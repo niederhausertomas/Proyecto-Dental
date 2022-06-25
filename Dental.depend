@@ -1,0 +1,258 @@
+# depslib dependency file v1.0
+1654533560 source:c:\users\dell\desktop\laboratorio ii\dental\dental\dental\main.cpp
+	<iostream>
+	<cstring>
+	<cstdlib>
+	"Persona.h"
+	"Paciente.h"
+	"Profesional.h"
+	"Fecha.h"
+	"Hora.h"
+	"Turno.h"
+	"Funciones.h"
+	"FuncionesProfesionales.h"
+
+1654554993 c:\users\dell\desktop\laboratorio ii\dental\dental\dental\persona.h
+	<cstring>
+	"Fecha.h"
+	<string.h>
+
+1654005057 source:c:\users\dell\desktop\laboratorio ii\dental\dental\dental\persona.cpp
+	<iostream>
+	"Persona.h"
+
+1654554993 c:\users\dell\desktop\laboratorio ii\dental\dental\dental\paciente.h
+	<cstring>
+	"Persona.h"
+	"Fecha.h"
+
+1654554826 source:c:\users\dell\desktop\laboratorio ii\dental\dental\dental\paciente.cpp
+	<iostream>
+	"Paciente.h"
+	<string.h>
+
+1654187168 source:c:\users\dell\desktop\laboratorio ii\dental\dental\dental\profesional.cpp
+	<iostream>
+	"Profesional.h"
+
+1654187506 c:\users\dell\desktop\laboratorio ii\dental\dental\dental\profesional.h
+	"Persona.h"
+
+1654004229 source:c:\users\dell\desktop\laboratorio ii\dental\dental\dental\fecha.cpp
+	<iostream>
+	"Fecha.h"
+	<ctime>
+
+1654004231 c:\users\dell\desktop\laboratorio ii\dental\dental\dental\fecha.h
+
+1653510883 source:c:\users\dell\desktop\laboratorio ii\dental\dental\dental\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1653510883 c:\users\dell\desktop\laboratorio ii\dental\dental\dental\hora.h
+
+1654553829 c:\users\dell\desktop\laboratorio ii\dental\dental\dental\turno.h
+	"Fecha.h"
+	"Hora.h"
+	"Paciente.h"
+	"Profesional.h"
+	<cstring>
+	<string.h>
+
+1654553707 source:c:\users\dell\desktop\laboratorio ii\dental\dental\dental\turno.cpp
+	<iostream>
+	"Turno.h"
+	<string.h>
+
+1654554826 source:c:\users\dell\desktop\laboratorio ii\dental\dental\dental\funciones.cpp
+
+1654554826 c:\users\dell\desktop\laboratorio ii\dental\dental\dental\funciones.h
+
+1654190515 source:c:\users\dell\desktop\laboratorio ii\dental\dental\dental\funcionesprofesionales.cpp
+	<iostream>
+	"FuncionesProfesionales.h"
+
+1654188873 c:\users\dell\desktop\laboratorio ii\dental\dental\dental\funcionesprofesionales.h
+	"Persona.h"
+	"Paciente.h"
+	"Profesional.h"
+	"Fecha.h"
+	"Hora.h"
+	"Turno.h"
+
+1656020326 source:c:\users\dell\desktop\porfolio\github\dental\dental\fecha.cpp
+	<iostream>
+	"Fecha.h"
+	<ctime>
+	"string.h"
+	<string>
+
+1656009427 c:\users\dell\desktop\porfolio\github\dental\dental\fecha.h
+
+1654698431 source:c:\users\dell\desktop\porfolio\github\dental\dental\funcionesprofesionales.cpp
+
+1654698528 c:\users\dell\desktop\porfolio\github\dental\dental\funcionesprofesionales.h
+
+1656110276 c:\users\dell\desktop\porfolio\github\dental\dental\persona.h
+	<cstring>
+	"Fecha.h"
+	<string>
+
+1655747574 c:\users\dell\desktop\porfolio\github\dental\dental\paciente.h
+	<string>
+	"Persona.h"
+	"Fecha.h"
+
+1656088559 c:\users\dell\desktop\porfolio\github\dental\dental\profesional.h
+	"Persona.h"
+
+1655392679 c:\users\dell\desktop\porfolio\github\dental\dental\hora.h
+
+1655758195 c:\users\dell\desktop\porfolio\github\dental\dental\turno.h
+	"Fecha.h"
+	"Hora.h"
+	"Paciente.h"
+	"Profesional.h"
+	<string>
+
+1655394522 source:c:\users\dell\desktop\porfolio\github\dental\dental\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1656019157 source:c:\users\dell\desktop\porfolio\github\dental\dental\main.cpp
+	<iostream>
+	<cstring>
+	<cstdlib>
+	"Persona.h"
+	"Paciente.h"
+	"Profesional.h"
+	"Fecha.h"
+	"Hora.h"
+	"Turno.h"
+	"Agenda.h"
+
+1656087261 source:c:\users\dell\desktop\porfolio\github\dental\dental\paciente.cpp
+	<iostream>
+	"Paciente.h"
+	<string>
+
+1656020741 source:c:\users\dell\desktop\porfolio\github\dental\dental\persona.cpp
+	<iostream>
+	"Persona.h"
+	<string>
+
+1656167553 source:c:\users\dell\desktop\porfolio\github\dental\dental\profesional.cpp
+	<iostream>
+	"Profesional.h"
+	"Jornada.h"
+
+1656086909 source:c:\users\dell\desktop\porfolio\github\dental\dental\turno.cpp
+	<iostream>
+	"Turno.h"
+	<string.h>
+
+1656029331 source:c:\users\dell\desktop\porfolio\github\dental\dental\agenda.cpp
+	<iostream>
+	"Agenda.h"
+	"Turno.h"
+
+1655417116 c:\users\dell\desktop\porfolio\github\dental\dental\agenda.h
+	"Turno.h"
+
+1656167444 source:c:\users\dell\desktop\porfolio\github\dental\dental\jornada.cpp
+	<iostream>
+	"Jornada.h"
+	<string>
+	<cstring>
+	"Profesional.h"
+
+1656166635 c:\users\dell\desktop\porfolio\github\dental\dental\jornada.h
+	"Fecha.h"
+	"Hora.h"
+
+1656029331 source:c:\users\dell\desktop\porfolio\dental\agenda.cpp
+	<iostream>
+	"Agenda.h"
+	"Turno.h"
+
+1655417116 c:\users\dell\desktop\porfolio\dental\agenda.h
+	"Turno.h"
+
+1655758195 c:\users\dell\desktop\porfolio\dental\turno.h
+	"Fecha.h"
+	"Hora.h"
+	"Paciente.h"
+	"Profesional.h"
+	<string>
+
+1656009427 c:\users\dell\desktop\porfolio\dental\fecha.h
+
+1655392679 c:\users\dell\desktop\porfolio\dental\hora.h
+
+1655747574 c:\users\dell\desktop\porfolio\dental\paciente.h
+	<string>
+	"Persona.h"
+	"Fecha.h"
+
+1656110276 c:\users\dell\desktop\porfolio\dental\persona.h
+	<cstring>
+	"Fecha.h"
+	<string>
+
+1656088559 c:\users\dell\desktop\porfolio\dental\profesional.h
+	"Persona.h"
+
+1656020326 source:c:\users\dell\desktop\porfolio\dental\fecha.cpp
+	<iostream>
+	"Fecha.h"
+	<ctime>
+	"string.h"
+	<string>
+
+1655394522 source:c:\users\dell\desktop\porfolio\dental\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1656167649 source:c:\users\dell\desktop\porfolio\dental\jornada.cpp
+	<iostream>
+	"Jornada.h"
+	<string>
+	<cstring>
+	"Profesional.h"
+
+1656166635 c:\users\dell\desktop\porfolio\dental\jornada.h
+	"Fecha.h"
+	"Hora.h"
+
+1656019157 source:c:\users\dell\desktop\porfolio\dental\main.cpp
+	<iostream>
+	<cstring>
+	<cstdlib>
+	"Persona.h"
+	"Paciente.h"
+	"Profesional.h"
+	"Fecha.h"
+	"Hora.h"
+	"Turno.h"
+	"Agenda.h"
+
+1656087261 source:c:\users\dell\desktop\porfolio\dental\paciente.cpp
+	<iostream>
+	"Paciente.h"
+	<string>
+
+1656020741 source:c:\users\dell\desktop\porfolio\dental\persona.cpp
+	<iostream>
+	"Persona.h"
+	<string>
+
+1656167553 source:c:\users\dell\desktop\porfolio\dental\profesional.cpp
+	<iostream>
+	"Profesional.h"
+	"Jornada.h"
+
+1656086909 source:c:\users\dell\desktop\porfolio\dental\turno.cpp
+	<iostream>
+	"Turno.h"
+	<string.h>
+
