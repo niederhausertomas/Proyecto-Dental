@@ -155,7 +155,7 @@ bool Profesional::guardarEnDisco(int nroRegistro)
 
 //---------------------------------------------------------------------------
 
-int buscarProfesionalPorLegajo()
+int BuscarProfesionalPorLegajo()
 {
     int leg;
     cout<<"Ingrese legajo del profesional: ";
@@ -312,6 +312,7 @@ void menuProfesionales()
         cout<< "4. Editar Profesional: "<<endl;
         cout<< "5. Cargar jornada de Profesional: "<<endl;
         cout<< "6. Editar Jornada de profesional: "<<endl;
+        cout<< "7. Mostrar jornada de un profesional: "<<endl;
         cout<< "0. Volver a menu principal: "<<endl;
         cout<< ".................................."<<endl<<endl;
         cout<< "Ingrese opcion: ";
@@ -340,7 +341,7 @@ void menuProfesionales()
             system("pause");
             break;
         case 3:
-            buscarProfesionalPorLegajo();
+            BuscarProfesionalPorLegajo();
             system("pause");
             break;
         case 4:
@@ -364,6 +365,9 @@ void menuProfesionales()
             break;
         case 6:
             EditarJornada();
+            break;
+        case 7:
+            MostrarJornadaProf();
             break;
         case 0:
             i=1;

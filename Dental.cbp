@@ -48,6 +48,8 @@
 		<Unit filename="Profesional.h" />
 		<Unit filename="Turno.cpp" />
 		<Unit filename="Turno.h" />
+		<Unit filename="Validar.cpp" />
+		<Unit filename="Validar.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

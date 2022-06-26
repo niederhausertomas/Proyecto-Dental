@@ -4,6 +4,8 @@
 using namespace std;
 #include "Turno.h"
 #include <string.h>
+#include "Validar.h"
+#include "Profesional.h"
 
 
 void Turno::setId(int Id)
@@ -78,18 +80,8 @@ string Turno::getMotivo()
     return Motivo;
 }
 
-void Turno::Cargar()
-{
+void GenerarIdTurno(Turno aux){
     int Id=1;
-    bool EstadoTurno;
-    Fecha FechaTurno;
-    int Dia,Mes,Anio;
-    Hora HoraTurno;
-    int Hora,Minutos;
-    int LegajoPaciente;
-    int LegajoProfesional;
-    string Motivo;
-    Turno aux;
     int i;
     int cantTurnos=CantidadRegistrosTurnos();
     for(i=0; i<cantTurnos; i++)
@@ -102,33 +94,45 @@ void Turno::Cargar()
     }
     cout<< "Id del Turno: ";
     cout<< Id<<endl;
-    Turno::setId(Id);
+    aux.setId(Id);
+}
+
+void Turno::Cargar()
+{
+    bool EstadoTurno;
+    Fecha FechaTurno;
+    int Dia,Mes,Anio;
+    Hora HoraTurno;
+    int Hora,Minutos;
+    int LegajoPaciente;
+    int LegajoProfesional;
+    string Motivo;
+    Turno aux;
+    GenerarIdTurno(aux);
     //cout<< "Ingrese estado del turno: ";
     //cin>> estadoTurno;
     //Turno::setEstadoTurno(estadoTurno);
-    cout<< "Ingrese dia del turno: ";
-    cin>> Dia;
+    ValidarDia(Dia);
     FechaTurno.setDia(Dia);
-    cout<< "Ingrese mes del turno: ";
-    cin>> Mes;
+    ValidarMes(Mes);
     FechaTurno.setMes(Mes);
-    cout<< "Ingrese anio del turno: ";
-    cin>> Anio;
+    ValidarAnio(Anio);
     FechaTurno.setAnio(Anio);
     while(FinDeSemana(FechaTurno)==true)
     {
         cout<< "El dia ingresado es fin de semana, ingrese una nueva fecha. "<<endl;
-        cout<< "Ingrese dia del turno: ";
-        cin>> Dia;
+        ValidarDia(Dia);
         FechaTurno.setDia(Dia);
-        cout<< "Ingrese mes del turno: ";
-        cin>> Mes;
+        ValidarMes(Mes);
         FechaTurno.setMes(Mes);
-        cout<< "Ingrese anio del turno: ";
-        cin>> Anio;
+        ValidarAnio(Anio);
         FechaTurno.setAnio(Anio);
     }
-    Turno::setFechaTurno(FechaTurno);
+    setFechaTurno(FechaTurno);
+    if (ProfDisponibleDia(FechaTurno)==true){
+    LegajoProfesional=BuscarProfesionalPorLegajo();
+    Turno::setLegajoProfesional(LegajoProfesional);
+    };
     cout<< "Ingrese Hora del turno: ";
     cin>>Hora;
     HoraTurno.setHoras(Hora);
@@ -139,9 +143,6 @@ void Turno::Cargar()
     cout<< "Ingrese legajo del paciente: ";
     cin>> LegajoPaciente;
     Turno::setLegajoPaciente(LegajoPaciente);
-    cout<< "Ingrese legajo profesional: ";
-    cin>> LegajoProfesional;
-    Turno::setLegajoProfesional(LegajoProfesional);
     cout<< "Ingrese motivo: ";
     cin.ignore();
     getline(cin,Motivo);

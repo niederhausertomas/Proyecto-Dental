@@ -24,7 +24,7 @@ public:
 
 void menuProfesionales();
 void listarProfesionales();
-int BuscarPacientePorLegajo();
+int BuscarProfesionalPorLegajo();
 int cantidadRegistrosProfesionales();
 void EditarProfesional();
 

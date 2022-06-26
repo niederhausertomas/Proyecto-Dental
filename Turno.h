@@ -5,6 +5,7 @@
 #include "Paciente.h"
 #include "Profesional.h"
 #include <string>
+#include "Jornada.h"
 
 class Turno
 {
@@ -42,5 +43,6 @@ void MenuTurnos();
 void EditarTurno();
 int CantidadRegistrosTurnos();
 void ListarTurnos();
+void GenerarIdTurno(Turno aux);
 
 #endif // TURNO_H_INCLUDED

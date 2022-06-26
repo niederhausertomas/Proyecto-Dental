@@ -81,7 +81,7 @@ string DiaDeLaSemana(Fecha f)
     int y = f.getAnio()-a;
     int m = f.getMes()+12*a-2;
     int d = (f.getDia()+y+y/4-y/100+y/400+(31*m)/12)%7;
-    string V1=v[d];
+    string V1=v[d-1];
     return V1;
 }
 

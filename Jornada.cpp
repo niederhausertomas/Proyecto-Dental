@@ -349,4 +349,64 @@ int BuscarJornadaPorLegajoProfesional()
     cout<<"No hay jornadas para el profesional."<<endl;
 }
 
+void MostrarJornadaProf()
+{
+    int Leg;
+    cout<<"Ingrese legajo del profesional: ";
+    cin>> Leg;
+    Jornada j;
+    int i,b=0;
+    int cantJornadas=CantidadRegistrosJornada();
+    for(i=0; i<cantJornadas; i++)
+    {
+        j.LeerDeDisco(i);
+        if(j.getLegajoDelProfesional()==Leg)
+        {
+            j.MostrarJornada();
+            cout<<endl;
+            b++;
+        }
+
+    }
+    if(b==0){
+    cout<<"No hay jornadas para el profesional."<<endl;}
+system("pause");
+}
+
+bool ProfDisponibleDia(Fecha FechaTurno)
+{
+    int b=0;
+    string D=DiaDeLaSemana(FechaTurno);
+    char Dia[10];
+    strcpy(Dia, D.c_str());
+    Jornada j;
+    int i;
+    int ValorDevuelto;
+    int cantJornadas=CantidadRegistrosJornada();
+    for(i=0; i<cantJornadas; i++)
+    {
+        j.LeerDeDisco(i);
+        ValorDevuelto=strcmp(j.getDia().c_str(),Dia);
+        if(ValorDevuelto==0)
+        {
+            j.MostrarJornada();
+            b++;
+            cout<<endl;
+        }
+    }
+    if (b==0)
+    {
+        cout<< "No hay profesionales que trabajen ese dia: "<<endl;
+        system("pause");
+        return false;
+    }
+    else
+    {
+        return true;
+        system("pause");
+    }
+}
+
+
+
 #endif // JORNADA_CPP_INCLUDED
