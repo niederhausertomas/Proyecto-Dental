@@ -75,13 +75,12 @@ void Fecha::FechaActual()
 string DiaDeLaSemana(Fecha f)
 {
     char v[7][10]= {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
-    int DiaDeLaSemana;
     //Congruencia de Zeller
     int a = (14-f.getMes())/12;
     int y = f.getAnio()-a;
     int m = f.getMes()+12*a-2;
     int d = (f.getDia()+y+y/4-y/100+y/400+(31*m)/12)%7;
-    string V1=v[d-1];
+    string V1=v[d];
     return V1;
 }
 
@@ -96,11 +95,13 @@ bool FinDeSemana(Fecha f)
     ValorDevuelto=strcmp(v3,v1);
     if (ValorDevuelto==0)
     {
+        cout<< "El dia ingresado es fin de semana, ingrese una fecha valida. "<<endl;
         return true;
     }
     ValorDevuelto=strcmp(v3,v2);
     if (ValorDevuelto==0)
     {
+        cout<< "El dia ingresado es fin de semana, ingrese una fecha valida. "<<endl;
         return true;
     }
     return false;

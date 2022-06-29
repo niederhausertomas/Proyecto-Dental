@@ -313,6 +313,7 @@ void menuProfesionales()
         cout<< "5. Cargar jornada de Profesional: "<<endl;
         cout<< "6. Editar Jornada de profesional: "<<endl;
         cout<< "7. Mostrar jornada de un profesional: "<<endl;
+        cout<< "8. Mostrar todas las jornadas: "<<endl;
         cout<< "0. Volver a menu principal: "<<endl;
         cout<< ".................................."<<endl<<endl;
         cout<< "Ingrese opcion: ";
@@ -368,6 +369,12 @@ void menuProfesionales()
             break;
         case 7:
             MostrarJornadaProf();
+            break;
+        case 8:
+            cout<<endl;
+            cout<< "---- Todas las jornadas: ----"<<endl<<endl;
+            MostrarTodasLasJornadaProf();
+
             break;
         case 0:
             i=1;

@@ -157,8 +157,7 @@ bool Jornada::GuardarEnDisco()
 }
 
 void Jornada::MostrarJornada(){
-    cout<< "---------Jornada----------"<<endl;
-    cout<< "Id de la Jornada: "<< getId()<<endl;
+    cout<< "---------Jornada ID: " << getId()<< " ----------"<<endl;
     cout<< "Legajo del Profesional: "<< getLegajoDelProfesional()<<endl;
     cout<< "Dias: " << getDia()<<endl;
     cout<< "Horario de entrada: "<< getEntrada().getHoras()<< ":" << getEntrada().getMinutos()<<endl;
@@ -373,12 +372,27 @@ void MostrarJornadaProf()
 system("pause");
 }
 
+void MostrarTodasLasJornadaProf(){
+
+    Jornada j;
+    int i,b=0;
+    int cantJornadas=CantidadRegistrosJornada();
+    for(i=0; i<cantJornadas; i++)
+    {
+        j.LeerDeDisco(i);
+            j.MostrarJornada();
+            cout<<endl;
+            b++;
+    }
+    if(b==0){
+    cout<<"No hay jornadas para el profesional."<<endl;}
+system("pause");
+}
+
 bool ProfDisponibleDia(Fecha FechaTurno)
 {
     int b=0;
     string D=DiaDeLaSemana(FechaTurno);
-    char Dia[10];
-    strcpy(Dia, D.c_str());
     Jornada j;
     int i;
     int ValorDevuelto;
@@ -386,7 +400,7 @@ bool ProfDisponibleDia(Fecha FechaTurno)
     for(i=0; i<cantJornadas; i++)
     {
         j.LeerDeDisco(i);
-        ValorDevuelto=strcmp(j.getDia().c_str(),Dia);
+        ValorDevuelto=strcmp(j.getDia().c_str(),D.c_str());
         if(ValorDevuelto==0)
         {
             j.MostrarJornada();
@@ -402,11 +416,34 @@ bool ProfDisponibleDia(Fecha FechaTurno)
     }
     else
     {
-        return true;
         system("pause");
+        return true;
     }
 }
 
-
-
+int ProfParaTurno(Fecha FechaTurno, int Leg){
+    string D=DiaDeLaSemana(FechaTurno);
+    char Dia[10];
+    strcpy(Dia, D.c_str());
+    Jornada j;
+    int i, b=0, ValorDevuelto;
+    int cantJornadas=CantidadRegistrosJornada();
+    for(i=0; i<cantJornadas; i++)
+    {
+        j.LeerDeDisco(i);
+        ValorDevuelto=strcmp(j.getDia().c_str(),Dia);
+        if(ValorDevuelto==0&&j.getLegajoDelProfesional()==Leg)
+        {
+            return Leg;
+            b++;
+            cout<<endl;
+        }
+    }
+    if (b==0)
+    {
+        cout<< "El profesional ingresado no trabaja el dia elegido: "<<endl;
+        system("pause");
+        return 0;
+    }
+}
 #endif // JORNADA_CPP_INCLUDED

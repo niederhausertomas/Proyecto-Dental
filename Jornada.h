@@ -33,6 +33,7 @@ int CantidadRegistrosJornada();
 int BuscarJornadaPorLegajoProfesional();
 void EditarJornada();
 void MostrarJornadaProf();
+void MostrarTodasLasJornadaProf();
 bool ProfDisponibleDia(Fecha FechaTurno);
-
+int ProfParaTurno(Fecha FechaTurno, int Leg);
 #endif // JORNADA_H_INCLUDED
