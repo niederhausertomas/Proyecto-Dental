@@ -4,8 +4,8 @@
 
 
 
-void MenuAgenda();
-void TurnosDelDia();
+void MenuAgenda();//
+void TurnosDelDia();//
 void TurnosProx7Dias();
 void TurnosMes();
 void TurnosPaciente();

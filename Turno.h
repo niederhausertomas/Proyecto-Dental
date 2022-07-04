@@ -37,12 +37,12 @@ public:
     bool GuardarEnDisco();
     bool GuardarEnDisco(int nroRegistro);
     bool LeerDeDisco(int nroRegistro);
+    int GenerarIdTurno();
 };
 
 void MenuTurnos();
 void EditarTurno();
 int CantidadRegistrosTurnos();
 void ListarTurnos();
-int GenerarIdTurno(Turno aux);
 
 #endif // TURNO_H_INCLUDED

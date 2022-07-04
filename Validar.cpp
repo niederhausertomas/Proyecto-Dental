@@ -2,8 +2,55 @@
 #define Validar_CPP_INCLUDED
 #include<iostream>
 using namespace std;
+#include "Validar.h"
 #include "Profesional.h"
 #include "Paciente.h"
+#include "Jornada.h"
+
+void ValidarEstado(bool estado){
+    if(estado==true)
+    {
+        cout<<" Activo";
+    }
+    else if(estado==false)
+    {
+        cout<<"inactivo";
+    }
+    cout<<endl;
+
+}
+
+int ValidarDniExistente(int DNI){
+    Paciente aux;
+    int i;
+    int cantPacientes=cantidadRegistrosPacientes();
+    for(i=0; i<cantPacientes; i++)
+    {
+        aux.leerDeDisco(i);
+        if(DNI==aux.getDni())
+        {
+            cout<< "El DNI ingresado ya existe, ";
+            DNI=0;
+            return DNI;
+        }
+    }
+    return DNI;
+}
+
+int ValidarDni(int DNI){
+    cout<< "Ingrese DNI: "<<endl;
+    cin>>DNI;
+    DNI=ValidarDniExistente(DNI);
+    while(DNI>60000000||DNI<=0||cin.fail()==true){
+        cout<< "El dato ingresado no es valido"<<endl;
+        cin.clear();
+        cin.ignore(1000,'\n');
+        cout<< "Ingrese DNI: "<<endl;
+        cin>>DNI;
+        DNI=ValidarDniExistente(DNI);
+    }
+    return DNI;
+}
 
 bool ValidarFechaPasado(Fecha f)
 {
@@ -42,7 +89,7 @@ while(Mes<1||Mes>12){
 int ValidarAnio(int Anio){
     cout<< "Ingrese Anio: "<<endl;
     cin>>Anio;
-while(Anio<2021){
+while(Anio<1900){
     cout<< "El anio ingresado no es valido: "<<endl;
     cout<< "Ingrese un numero de anio valido: "<<endl;
     cin>> Anio;
@@ -84,30 +131,62 @@ int ValidarLegajoProfesional(int Leg)
     }
 }
 
-int ValidarHora(int hora){
-    cout<< "Ingrese Hora del turno: ";
+Hora ValidarHorario(){
+Hora h;
+h.setHoras(ValidarHora());
+h.setMinutos(ValidarMinutos());
+return h;
+}
+
+Hora ValidarHorarioConLegJornada(Hora HoraTurno, int LegajoProfesional)
+{
+
+    Jornada j;
+    int i, b=0;
+    int cantJornadas=CantidadRegistrosJornada();
+    for(i=0; i<cantJornadas; i++)
+    {
+        j.LeerDeDisco(i);
+        if(j.getLegajoDelProfesional()==LegajoProfesional&&j.getEntrada().getHoras()<=HoraTurno.getHoras()&&j.getSalida().getHoras()>=HoraTurno.getHoras())
+        {
+            b++;
+            return HoraTurno;
+        }
+    }
+    if (b==0)
+    {
+        cout<< "El profesional no trabaja en el horario ingresado: "<<endl;
+        system("pause");
+        HoraTurno.setHoras(0);
+        return HoraTurno;
+    }
+}
+
+int ValidarHora(){
+    int hora;
+    cout<< "Ingrese Hora: ";
     cin>>hora;
     while (hora<8||hora>20){
         cout<< "La hora ingresada esta fuera del horario de atencion (8 a 20 hs.)"<<endl;
-        cout<< "Ingrese Hora del turno: ";
+        cout<< "Ingrese Hora: ";
         cin>>hora;
     }
     return hora;
 }
 
-int ValidarMinutos(int minutos){
-    cout<< "Ingrese minutos del turno: ";
+int ValidarMinutos(){
+    int minutos;
+    cout<< "Ingrese minutos: ";
     cin>>minutos;
     while (minutos!=0&&minutos!=30){
         cout<< "Solo se aceptan horarios en punto o y media."<<endl;
-        cout<< "Ingrese minutos del turno: ";
+        cout<< "Ingrese minutos: ";
         cin>>minutos;
     }
     return minutos;
 }
 
 int ValidarLegajoPaciente(int Leg){
-
     Paciente aux;
     int i;
     int cantPacientes=cantidadRegistrosPacientes();

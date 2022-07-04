@@ -23,6 +23,8 @@ public:
 };
 
 void menuProfesionales();
+void listarProfesionalesActivos();
+void listarProfesionalesInactivos();
 void listarProfesionales();
 int BuscarProfesionalPorLegajo();
 int cantidadRegistrosProfesionales();

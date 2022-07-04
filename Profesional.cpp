@@ -4,7 +4,7 @@
 using namespace std;
 #include "Profesional.h"
 #include "Jornada.h"
-
+#include "Validar.h"
 
 
 void Profesional::setLegajo(int legajo)
@@ -41,7 +41,7 @@ void Profesional::cargarProfesional()
     string Domicilio;
     string Telefono;
     bool EstadoProfesional;
-
+    Fecha fechaNac;
     int Leg=1;
     Profesional aux;
     int i;
@@ -57,48 +57,32 @@ void Profesional::cargarProfesional()
     cout<< "Legajo del Profesional: ";
     cout<< Leg<<endl;
     setLegajo(Leg);
-    cout<< "Ingrese dni: "<<endl;
-    cin>>Dni;
-    while(Dni>60000000)
-    {
-        cout<< "Ingrese un DNI valido: "<<endl;
-        cin>>Dni;
-    }
+    Dni=ValidarDni(Dni);
     setDni(Dni);
     cout<< "Ingrese nomre: "<<endl;
-    cin.ignore();
+    cin.clear();
+    cin.ignore(1000,'\n');
     getline(cin,Nombre);
     setNombre(Nombre);
     cout<< "Ingrese apellido: "<<endl;
-    cin.ignore();
     getline(cin,Apellido);
     setApellido(Apellido);
-    cout<< "Dia de nacimiento: "<<endl;
-    cin>>Dia;
-    cout<< "Mes de nacimiento: "<<endl;
-    cin>>Mes;
-    cout<< "anio de nacimiento: "<<endl;
-    cin>>Anio;
-    Fecha fechaNac(Dia, Mes, Anio);
-    setFechaNacimiento(fechaNac);
+    cout<< "Fecha de Nacimiento: "<<endl;
+    setFechaNacimiento(ValidarFecha(fechaNac));
     cout<< "Ingrese email: "<<endl;
     cin.ignore();
     getline(cin,Email);
     setEmail(Email);
     cout<< "Ingrese el domicilio: "<<endl;
-    cin.ignore();
     getline(cin,Domicilio);
     setDomicilio(Domicilio);
     cout<< "Ingrese el telefono: "<<endl;
-    cin.ignore();
     getline(cin,Telefono);
     setTelefono(Telefono);
     cout<< "Ingrese matricula del profesional: "<<endl;
     cin>> Matricula;
     setMatricula(Matricula);
-    //cout<< "Estado de Profesional: "<<endl;
-    //cin>> estadoProfesional;
-    //setEstadoProfesional(estadoProfesional);
+    setEstadoProfesional(true);
 }
 
 void Profesional::mostrarProfesional()
@@ -112,7 +96,9 @@ void Profesional::mostrarProfesional()
     cout<< "Telefono: "<<getTelefono()<<endl;
     cout<< "Matricula: "<<getMatricula() <<endl;
     cout<< "Fecha de nacimiento: "<< getFechaNacimiento().getDia() << "/"<< getFechaNacimiento().getMes()<< "/"<< getFechaNacimiento().getAnio()<<endl;
-    cout<< "Estado del Profesional: "<< getEstadoProfesional() <<endl;
+    cout<< "Estado del Profesional: ";
+    ValidarEstado(getEstadoProfesional());
+    cout<<endl;
 }
 
 bool Profesional::leerDeDisco(int nroRegistro)
@@ -307,13 +293,15 @@ void menuProfesionales()
         system("cls");
         cout<< "....... Menu profesionales ......."<<endl;
         cout<< "1. Cargar nuevo profesional: "<<endl;
-        cout<< "2. Listado de profesionales: "<<endl;
-        cout<< "3. Buscar profesional por legajo: "<<endl;
-        cout<< "4. Editar Profesional: "<<endl;
-        cout<< "5. Cargar jornada de Profesional: "<<endl;
-        cout<< "6. Editar Jornada de profesional: "<<endl;
-        cout<< "7. Mostrar jornada de un profesional: "<<endl;
-        cout<< "8. Mostrar todas las jornadas: "<<endl;
+        cout<< "2. Listado de profesionales Activos: "<<endl;
+        cout<< "3. Listado de profesionales inactivos: "<<endl;
+        cout<< "4. Listado Todos los profesionales: "<<endl;
+        cout<< "5. Buscar profesional por legajo: "<<endl;
+        cout<< "6. Editar Profesional: "<<endl;
+        cout<< "7. Cargar jornada de Profesional: "<<endl;
+        cout<< "8. Editar Jornada de profesional: "<<endl;
+        cout<< "9. Mostrar jornada de un profesional: "<<endl;
+        cout<< "10. Mostrar todas las jornadas: "<<endl;
         cout<< "0. Volver a menu principal: "<<endl;
         cout<< ".................................."<<endl<<endl;
         cout<< "Ingrese opcion: ";
@@ -333,22 +321,39 @@ void menuProfesionales()
             {
                 cout<< "No se pudo guardar."<<endl;
             };
+            cout<< endl;
+            prof.mostrarProfesional();
+            system("pause");
             break;
         case 2:
             system("cls");
-            cout<< "2. Listado de profesionales: "<<endl;
+            cout<< "2. Listado de profesionales activos: "<<endl;
+            cout<< ".................................."<<endl<<endl;
+            listarProfesionalesActivos();
+            system("pause");
+            break;
+        case 3:
+            system("cls");
+            cout<< "3. Listado de profesionales Inactivos: "<<endl;
+            cout<< ".................................."<<endl<<endl;
+            listarProfesionalesInactivos();
+            system("pause");
+            break;
+        case 4:
+            system("cls");
+            cout<< "4. Listado de todos los profesionales: "<<endl;
             cout<< ".................................."<<endl<<endl;
             listarProfesionales();
             system("pause");
             break;
-        case 3:
+        case 5:
             BuscarProfesionalPorLegajo();
             system("pause");
             break;
-        case 4:
+        case 6:
             EditarProfesional();
             break;
-        case 5:
+        case 7:
             Jornada j;
             j.CargarJornada();
             cout<<endl;
@@ -364,17 +369,16 @@ void menuProfesionales()
             j.MostrarJornada();
             system("pause");
             break;
-        case 6:
+        case 8:
             EditarJornada();
             break;
-        case 7:
+        case 9:
             MostrarJornadaProf();
             break;
-        case 8:
+        case 10:
             cout<<endl;
             cout<< "---- Todas las jornadas: ----"<<endl<<endl;
             MostrarTodasLasJornadaProf();
-
             break;
         case 0:
             i=1;
@@ -386,6 +390,7 @@ void menuProfesionales()
 void listarProfesionales()
 {
     Profesional aux;
+    int z=0;
     FILE *p= fopen("profesional.dat","rb");
     if(p==NULL)
     {
@@ -395,7 +400,53 @@ void listarProfesionales()
     {
         aux.mostrarProfesional();
         cout<<endl;
+        z++;
     }
+    fclose(p);
+    cout<< "Hay " << z<< " Profesionales. "<<endl;
+}
+
+void listarProfesionalesActivos()
+{
+    Profesional aux;
+    FILE *p= fopen("profesional.dat","rb");
+    int z=0;
+    if(p==NULL)
+    {
+        return;
+    }
+    while(fread(&aux,sizeof(Profesional),1,p)==1)
+    {
+        if (aux.getEstadoProfesional()==true)
+        {
+            aux.mostrarProfesional();
+            cout<<endl;
+            z++;
+        }
+    }
+    cout<< "Hay "<< z<< " profesionales activos."<<endl;
+    fclose(p);
+}
+
+void listarProfesionalesInactivos()
+{
+    Profesional aux;
+    FILE *p= fopen("profesional.dat","rb");
+    int z=0;
+    if(p==NULL)
+    {
+        return;
+    }
+    while(fread(&aux,sizeof(Profesional),1,p)==1)
+    {
+        if (aux.getEstadoProfesional()==false)
+        {
+            aux.mostrarProfesional();
+            cout<<endl;
+            z++;
+        }
+    }
+    cout<< "Hay "<< z<< " profesionales inactivos."<<endl;
     fclose(p);
 }
 

@@ -29,6 +29,8 @@ public:
 //--------------------------------------------------------------------------------------
 
 void menuPacientes();
+void listarPacientesActivos();
+void listarPacientesInactivos();
 void listarPacientes();
 int BuscarPacientePorLegajo();
 int cantidadRegistrosPacientes();

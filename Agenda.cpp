@@ -4,33 +4,16 @@
 using namespace std;
 #include "Agenda.h"
 #include "Turno.h"
+#include "Validar.h"
 
 void TurnosDispDia()
 {
     Fecha f;
-    int anio, mes, dia;
-    cout<< "ingrese anio a consultar: "<<endl;
-    cin>> anio;
-    f.setAnio(anio);
-    cout<< "Ingrese mes a consultar: "<<endl;
-    cin>> mes;
-    f.setMes(mes);
-    cout<< "Ingrese dia a consultar: "<<endl;
-    cin>> dia;
-    f.setDia(dia);
-    while (FinDeSemana(f)==true)
-    {
+    do{
         cout<< "El dia ingresado es fin de semana, Ingrese una nueva fecha: "<<endl;
-        cout<< "ingrese anio a consultar: "<<endl;
-        cin>> anio;
-        f.setAnio(anio);
-        cout<< "Ingrese mes a consultar: "<<endl;
-        cin>> mes;
-        f.setMes(mes);
-        cout<< "Ingrese dia a consultar: "<<endl;
-        cin>> dia;
-        f.setDia(dia);
-    }
+        f=ValidarFecha(f);
+    } while (FinDeSemana(f)==true);
+
     HorariosDisponiblesDelDia(f);
 }
 
@@ -137,8 +120,21 @@ void TurnosDelDia(Fecha f){
     {
         t.LeerDeDisco(i);
         if (t.getFechaTurno().getAnio()==f.getAnio()&&t.getFechaTurno().getMes()==f.getMes()&&t.getFechaTurno().getDia()==f.getDia()){
-            cout<< "Id turno: " <<t.getId()<< "\t"<<"Leg del Profesional: "<<t.getLegajoProfesional()<< "\t"<< "\t"<< "Leg del paciente: "<<t.getLegajoPaciente()<< "\t"<< "Horario: "<< t.getHoraTurno().getHoras()<< ":" << t.getHoraTurno().getMinutos() <<endl;
+            cout<< "Id turno: " <<t.getId()<< "\t"<<"Legajo Profesional: "<<t.getLegajoProfesional()<< "\t"<< "\t"<< "Leg del paciente: "<<t.getLegajoPaciente()<< "\t"<< "Horario: "<< t.getHoraTurno().getHoras()<< ":" << t.getHoraTurno().getMinutos() <<endl;
         }
+    }
+    system("pause");
+}
+
+void TurnosProx7Dias(){
+    Fecha f;
+    f.FechaActual();
+    int j;
+    for(j=0;j<7;j++){
+    f.setDia(f.getDia()+1);
+    cout<<endl;
+    TurnosDelDia(f);
+    cout<<endl;
     }
     system("pause");
 }
@@ -306,6 +302,7 @@ void MenuAgenda()
             f.FechaActual();
             if (FinDeSemana(f)==true){
                 cout<<"Hoy es fin de semana. y no hay turnos."<<endl;
+                system("pause");
                 break;
             }
             TurnosDelDia(f);}
@@ -314,7 +311,7 @@ void MenuAgenda()
             system("cls");
             cout<< "2. Turnos de los proximos 7 dias: "<<endl;
             cout<< ".................................."<<endl<<endl;
-            TurnosDispProx7Dias();
+            TurnosProx7Dias();
             break;
         case 3:
             system("cls");

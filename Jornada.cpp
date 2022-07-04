@@ -6,6 +6,7 @@ using namespace std;
 #include <string>
 #include <cstring>
 #include "Profesional.h"
+#include "Validar.h"
 
 void Jornada::setId(int Id){
     _Id=Id;
@@ -54,11 +55,10 @@ void Jornada::CargarJornada()
 {
     system("cls");
     int hora, minutos;
-    int LegajoDelProfesional;
+    int LegajoDelProfesional=0;
     Profesional aux;
     int i,j=0;
     int Id=1;
-
     Jornada jo;
     int t;
     int cantJornada=CantidadRegistrosJornada();
@@ -72,24 +72,8 @@ void Jornada::CargarJornada()
     }
     cout<< "Id de la Jornada: " <<Id <<endl;
     setId(Id);
-
-    while (j==0)
-    {
-        cout<< "Ingrese el Legajo del Profesional: "<<endl;
-        cin>>LegajoDelProfesional;
-        int cantProfesionales=cantidadRegistrosProfesionales();
-        for(i=0; i<cantProfesionales; i++)
-        {
-            aux.leerDeDisco(i);
-            if(aux.getLegajo()==LegajoDelProfesional)
-            {
-                j++;
-            }
-        }
-        if (j==0)
-        {
-            cout<< "El Legajo del Profesional no existe. "<<endl;
-        }
+    while (LegajoDelProfesional==0){
+        LegajoDelProfesional=ValidarLegajoProfesional(LegajoDelProfesional);
     }
     setLegajoDelProfesional(LegajoDelProfesional);
     int opcion=0;
@@ -157,11 +141,18 @@ bool Jornada::GuardarEnDisco()
 }
 
 void Jornada::MostrarJornada(){
-    cout<< "---------Jornada ID: " << getId()<< " ----------"<<endl;
-    cout<< "Legajo del Profesional: "<< getLegajoDelProfesional()<<endl;
-    cout<< "Dias: " << getDia()<<endl;
-    cout<< "Horario de entrada: "<< getEntrada().getHoras()<< ":" << getEntrada().getMinutos()<<endl;
-    cout<< "Horario de Salida: " << getSalida().getHoras()<< ":" << getSalida().getMinutos()<<endl;
+    Profesional aux;
+    int i;
+    int cantProfesionales=cantidadRegistrosProfesionales();
+    for(i=0; i<cantProfesionales; i++)
+    {
+        aux.leerDeDisco(i);
+        if(getLegajoDelProfesional()==aux.getLegajo())
+        {
+cout<<"ID jornada: "<<getId()<<" - Legajo: "<<getLegajoDelProfesional()<< " " <<aux.getApellido() <<" - Dias: "<<getDia()<<" Horario de entrada: "<<getEntrada().getHoras()<<":"<<getEntrada().getMinutos()<<" Salida: "<<getSalida().getHoras()<<":"<<getSalida().getMinutos()<<endl;
+        }
+    }
+
 }
 
 int CantidadRegistrosJornada()
@@ -293,6 +284,7 @@ void EditarJornada()
                 e.setHoras(hora);
                 e.setMinutos(minutos);
                 j.setEntrada(e);
+                j.GuardarEnDisco();
                 break;
             case 5:
                 cout<< "Indique Hora de salida: "<<endl;
@@ -302,6 +294,7 @@ void EditarJornada()
                 e.setHoras(hora);
                 e.setMinutos(minutos);
                 j.setSalida(e);
+                j.GuardarEnDisco();
                 break;
             case 0:
                 return;
@@ -416,27 +409,23 @@ bool ProfDisponibleDia(Fecha FechaTurno)
     }
     else
     {
-        system("pause");
         return true;
     }
 }
 
 int ProfParaTurno(Fecha FechaTurno, int Leg){
     string D=DiaDeLaSemana(FechaTurno);
-    char Dia[10];
-    strcpy(Dia, D.c_str());
     Jornada j;
     int i, b=0, ValorDevuelto;
     int cantJornadas=CantidadRegistrosJornada();
     for(i=0; i<cantJornadas; i++)
     {
         j.LeerDeDisco(i);
-        ValorDevuelto=strcmp(j.getDia().c_str(),Dia);
+        ValorDevuelto=strcmp(j.getDia().c_str(),D.c_str());
         if(ValorDevuelto==0&&j.getLegajoDelProfesional()==Leg)
         {
-            return Leg;
             b++;
-            cout<<endl;
+            return Leg;
         }
     }
     if (b==0)
