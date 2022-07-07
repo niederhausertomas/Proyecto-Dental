@@ -41,7 +41,6 @@ void HorariosDisponiblesDelDia(Fecha f)
     Turno aux;
     Tur.setHoras(8);
     Tur.setMinutos(0);
-
     cout<<"Turnos disponibles del dia: "<< DiaDeLaSemana(f)<< " " <<f.getDia()<< "/"<<f.getMes()<< "/"<<f.getAnio()<<endl;
     cout<< ".............................................."<<endl;
     int cantJornadas=CantidadRegistrosJornada();
@@ -63,7 +62,7 @@ void HorariosDisponiblesDelDia(Fecha f)
                     }
                     Tur.setHoras(z);
                     Tur.setMinutos(k);
-                    if(Tur.getHoras()>=j.getEntrada().getHoras()&&Tur.getHoras()<=j.getSalida().getHoras())
+                    if(Tur.getHoras()>=j.getEntrada().getHoras()&&Tur.getHoras()<j.getSalida().getHoras())
                     {
                     for(w=0; w<cantTurnos; w++)
                     {
@@ -89,9 +88,12 @@ void HorariosDisponiblesDelDia(Fecha f)
 
 void TurnosPaciente()
 {
-    int leg;
-    cout<< "ingrese el legajo del paciente: "<<endl;
-    cin>> leg;
+    int leg=0;
+    do{
+        cout<< "Ingrese el legajo del paciente: "<<endl;
+        cin>> leg;
+        leg=ValidarLegajoPaciente(leg);
+    } while (leg==0);
     Paciente p;
     Turno t;
     int i,j;
@@ -163,40 +165,57 @@ void TurnosProx7Dias(){
 
 void TurnosDispDiaProf(Fecha f, int LegProf)
 {
-    Turno t;
-    int i,j,b=0;
-    Hora V[24];
-    Horarios(V);
+    Jornada j;
+    string D=DiaDeLaSemana(f);
+    int ValorDevuelto,i,w,z,q,k=30,y=0;
+    Hora Tur;
+    Turno aux;
+    Tur.setHoras(8);
+    Tur.setMinutos(0);
+
     cout<<"Turnos disponibles del dia: "<< DiaDeLaSemana(f)<< " " <<f.getDia()<< "/"<<f.getMes()<< "/"<<f.getAnio()<<endl;
-    cout<< "Del profesional " << LegProf << ": "<<endl;
+    cout<< "Del Profesional "<< LegProf<<endl;
     cout<< ".............................................."<<endl;
-    int cantTurnos = CantidadRegistrosTurnos();
-    for(i=0; i<cantTurnos; i++)
+    int cantJornadas=CantidadRegistrosJornada();
+    int cantTurnos=CantidadRegistrosTurnos();
+    for(i=0; i<cantJornadas; i++)
     {
-        t.LeerDeDisco(i);
-        if (f==t)
+        j.LeerDeDisco(i);
+        ValorDevuelto=strcmp(j.getDia().c_str(),D.c_str());
+        if(ValorDevuelto==0&&LegProf==j.getLegajoDelProfesional())
         {
-            for(j=0; j<24; j++)
+            j.MostrarJornada();
+            for(z=8; z<20; z++)
             {
-                if(t==V[j])
-                {
-                    if (t.getLegajoProfesional()==LegProf)
+                for(q=0;q<2;q++){
+                    if(k==30){
+                        k=0;
+                    }else if(k==0){
+                    k=30;
+                    }
+                    Tur.setHoras(z);
+                    Tur.setMinutos(k);
+                    if(Tur.getHoras()>=j.getEntrada().getHoras()&&Tur.getHoras()<j.getSalida().getHoras())
                     {
-                        b++;
-                        cout<<"Hora: "<<V[j].getHoras()<< ":" <<V[j].getMinutos()<<endl;
+                    for(w=0; w<cantTurnos; w++)
+                    {
+                        aux.LeerDeDisco(w);
+                        if(aux.getEstadoTurno()==true&&aux.getLegajoProfesional()==j.getLegajoDelProfesional()&&f==aux&&aux==Tur){
+                        y++;
+                        }
+                    }
+                    if(y==0){
+                            cout<< Tur.getHoras() << ":" << Tur.getMinutos ()<< "\t" << "Prof. Disp: "<< j.getLegajoDelProfesional() <<endl;
+                    }else if(y!=0){
+                            cout<< Tur.getHoras() << ":" << Tur.getMinutos ()<< "\t" << "Turno tomado. " <<endl;
+                    }
+                    y=0;
                     }
                 }
             }
+            cout<<endl;
         }
     }
-    if (b==0)
-    {
-        for(j=0; j<24; j++)
-        {
-            cout<<"Hora: "<<V[j].getHoras()<< ":" <<V[j].getMinutos()<<endl;
-        }
-    }
-    cout<< endl;
     system("pause");
 }
 
@@ -204,7 +223,6 @@ void DiaProf()
 {
     int LegProf=0;
     Fecha f;
-    int anio, mes, dia;
     MostrarTodasLasJornadaProf();
 
     do {
@@ -213,6 +231,7 @@ void DiaProf()
     f=ValidarFecha(f);
     while (FinDeSemana(f)==true)
     {
+        cout<<endl;
         cout<< "El dia seleccionado es fin de semana, ingrese otra fecha."<<endl;
         f=ValidarFecha(f);
     }

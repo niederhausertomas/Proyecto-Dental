@@ -5,6 +5,7 @@ using namespace std;
 #include "Paciente.h"
 #include <string>
 #include "Validar.h"
+#include "rlutil.h"
 
 
 void Paciente::setLegajo(int legajo)
@@ -219,6 +220,7 @@ void menuPacientes()
             break;
         case 0:
             i=1;
+            rlutil::cls();
             break;
         }
     }

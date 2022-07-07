@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
+#include "rlutil.h"
 using namespace std;
 #include "Persona.h"
 #include "Paciente.h"
@@ -11,24 +12,77 @@ using namespace std;
 #include "Agenda.h"
 #include "Validar.h"
 
-// Ver tema de la libreria rlutil para mejorar la estetica https://youtu.be/z2cfUpUqdTs a partir del minuto 55
 int main()
 {
-    int opcion;
+    rlutil::setBackgroundColor(rlutil::DARKGREY);
+    rlutil::setColor(rlutil::WHITE);
+    int opcion, y;
     char confirmarCerrar;
+    rlutil::hidecursor();
+    rlutil::cls();
     while(true)
     {
         Hora V[24];
         Horarios(V);
-        system("cls");
+        rlutil::locate(30,10);
         cout<< "..............Menu................"<<endl;
+        rlutil::locate(30,11);
         cout<< "1. Pacientes: "<<endl;
+        rlutil::locate(30,12);
         cout<< "2. Profesionales: "<<endl;
+        rlutil::locate(30,13);
         cout<< "3. Turnos: "<<endl;
+        rlutil::locate(30,14);
         cout<< "4. Agenda: "<<endl;
+        rlutil::locate(30,15);
         cout<< "0. Cerrar sistema: "<<endl;
-        cout<< "Ingrese opcion: "<<endl;
+        rlutil::locate(30,16);
         cout<< ".................................."<<endl<<endl;
+        rlutil::locate(28,10+y);
+        cout<< (char)175<<endl;
+
+        switch(rlutil::getkey())
+        {
+        case 14: //up
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y--;
+            if(y<1){
+                y=1;
+            }
+            break;
+        case 15: //down
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y++;
+            if(y>5){
+                y=5;
+            }
+            break;
+        case 1: //enter
+            switch(y){
+        case 1:
+            menuPacientes();
+            break;
+        case 2:
+            menuProfesionales();
+            break;
+        case 3:
+            MenuTurnos();
+            break;
+        case 4:
+            MenuAgenda();
+            break;
+        case 5:
+            return 0;
+            break;}
+        default:
+            break;
+        }
+
+
+
+/*
         cin>>opcion;
         switch(opcion)
         {
@@ -57,9 +111,8 @@ int main()
             break;
         }
         system("pause");
-
+*/
     }
-
     cout<<endl;
     system("pause");
     return 0;

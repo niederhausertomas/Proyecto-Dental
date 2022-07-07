@@ -256,7 +256,7 @@
 	"Turno.h"
 	<string.h>
 
-1657163038 source:c:\users\dell\desktop\porfolio\proyecto dental\agenda.cpp
+1657205163 source:c:\users\dell\desktop\porfolio\proyecto dental\agenda.cpp
 	<iostream>
 	"Agenda.h"
 	"Turno.h"
@@ -313,10 +313,11 @@
 	"Fecha.h"
 	"Hora.h"
 
-1656971513 source:c:\users\dell\desktop\porfolio\proyecto dental\main.cpp
+1657212734 source:c:\users\dell\desktop\porfolio\proyecto dental\main.cpp
 	<iostream>
 	<cstring>
 	<cstdlib>
+	"rlutil.h"
 	"Persona.h"
 	"Paciente.h"
 	"Profesional.h"
@@ -326,11 +327,12 @@
 	"Agenda.h"
 	"Validar.h"
 
-1657164325 source:c:\users\dell\desktop\porfolio\proyecto dental\paciente.cpp
+1657212756 source:c:\users\dell\desktop\porfolio\proyecto dental\paciente.cpp
 	<iostream>
 	"Paciente.h"
 	<string>
 	"Validar.h"
+	"rlutil.h"
 
 1656020741 source:c:\users\dell\desktop\porfolio\proyecto dental\persona.cpp
 	<iostream>
@@ -360,4 +362,18 @@
 	"Profesional.h"
 	"Paciente.h"
 	"Jornada.h"
+
+1657208476 c:\users\dell\desktop\porfolio\proyecto dental\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
 
