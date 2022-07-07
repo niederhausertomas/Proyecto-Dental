@@ -104,13 +104,11 @@ void Turno::Cargar()
     setId(GenerarIdTurno());
     setEstadoTurno(true);
     setLegajoProfesional(0);
-    cout<<getLegajoProfesional()<<endl;
     while (getLegajoProfesional()==0)
     {
         do
         {
             setFechaTurno(ValidarFecha(getFechaTurno()));
-            system("pause");
         }
         while (ValidarFechaPasado(getFechaTurno())==false || FinDeSemana(getFechaTurno())==true );
         setFechaTurno(getFechaTurno());
@@ -128,12 +126,12 @@ void Turno::Cargar()
     setLegajoPaciente(LegajoPaciente);
     do{
     setHoraTurno(ValidarHorario());
-    setHoraTurno (ValidarHorarioConLegJornada(getHoraTurno(), getLegajoProfesional()));
+    setHoraTurno (ValidarHorarioConLegJornada(getHoraTurno(), getLegajoProfesional(), getFechaTurno()));
     }while(getHoraTurno().getHoras()==0);
     cout<< "Ingrese motivo: ";
     cin.ignore();
     getline(cin,Motivo);
-    Turno::setMotivo(Motivo);
+    setMotivo(Motivo);
 }
 
 void Turno::Mostrar()

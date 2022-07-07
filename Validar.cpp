@@ -138,16 +138,17 @@ h.setMinutos(ValidarMinutos());
 return h;
 }
 
-Hora ValidarHorarioConLegJornada(Hora HoraTurno, int LegajoProfesional)
+Hora ValidarHorarioConLegJornada(Hora HoraTurno, int LegajoProfesional,Fecha FechaTurno )
 {
-
+    string D=DiaDeLaSemana(FechaTurno);
     Jornada j;
-    int i, b=0;
+    int i, b=0, ValorDevuelto;
     int cantJornadas=CantidadRegistrosJornada();
     for(i=0; i<cantJornadas; i++)
     {
         j.LeerDeDisco(i);
-        if(j.getLegajoDelProfesional()==LegajoProfesional&&j.getEntrada().getHoras()<=HoraTurno.getHoras()&&j.getSalida().getHoras()>=HoraTurno.getHoras())
+        ValorDevuelto=strcmp(j.getDia().c_str(),D.c_str());
+        if(ValorDevuelto==0&&j.getLegajoDelProfesional()==LegajoProfesional&&j.getEntrada().getHoras()<=HoraTurno.getHoras()&&j.getSalida().getHoras()>HoraTurno.getHoras())
         {
             b++;
             return HoraTurno;

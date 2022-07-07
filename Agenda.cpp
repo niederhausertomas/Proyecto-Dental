@@ -25,43 +25,65 @@ bool operator==(Fecha f, Turno t)
     return true;
 }
 
-bool operator==(Turno t, Hora V)
+bool operator==(Turno t, Hora h)
 {
-    if(t.getHoraTurno().getHoras()==V.getHoras()&&t.getHoraTurno().getMinutos()==V.getMinutos())return false;
-    return true;
+    if(t.getHoraTurno().getHoras()==h.getHoras()&&t.getHoraTurno().getMinutos()==h.getMinutos())return true;
+    return false;
 }
+
 
 void HorariosDisponiblesDelDia(Fecha f)
 {
-    Turno t;
-    int i,j,b=0;
-    Hora V[24];
-    Horarios(V);
+    Jornada j;
+    string D=DiaDeLaSemana(f);
+    int ValorDevuelto,i,w,z,q,k=30,y=0;
+    Hora Tur;
+    Turno aux;
+    Tur.setHoras(8);
+    Tur.setMinutos(0);
+
     cout<<"Turnos disponibles del dia: "<< DiaDeLaSemana(f)<< " " <<f.getDia()<< "/"<<f.getMes()<< "/"<<f.getAnio()<<endl;
     cout<< ".............................................."<<endl;
-    int cantTurnos = CantidadRegistrosTurnos();
-    for(i=0; i<cantTurnos; i++)
+    int cantJornadas=CantidadRegistrosJornada();
+    int cantTurnos=CantidadRegistrosTurnos();
+    for(i=0; i<cantJornadas; i++)
     {
-        t.LeerDeDisco(i);
-        if (f==t)
+        j.LeerDeDisco(i);
+        ValorDevuelto=strcmp(j.getDia().c_str(),D.c_str());
+        if(ValorDevuelto==0)
         {
-            b++;
-            for(j=0; j<24; j++)
+            j.MostrarJornada();
+            for(z=8; z<20; z++)
             {
-                if(t==V[j])
-                {
-                    cout<<"Hora: "<<V[j].getHoras()<< ":" <<V[j].getMinutos()<<endl;
+                for(q=0;q<2;q++){
+                    if(k==30){
+                        k=0;
+                    }else if(k==0){
+                    k=30;
+                    }
+                    Tur.setHoras(z);
+                    Tur.setMinutos(k);
+                    if(Tur.getHoras()>=j.getEntrada().getHoras()&&Tur.getHoras()<=j.getSalida().getHoras())
+                    {
+                    for(w=0; w<cantTurnos; w++)
+                    {
+                        aux.LeerDeDisco(w);
+                        if(aux.getEstadoTurno()==true&&aux.getLegajoProfesional()==j.getLegajoDelProfesional()&&f==aux&&aux==Tur){
+                        y++;
+                        }
+                    }
+                    if(y==0){
+                            cout<< Tur.getHoras() << ":" << Tur.getMinutos ()<< "\t" << "Prof. Disp: "<< j.getLegajoDelProfesional() <<endl;
+                    }else if(y!=0){
+                            cout<< Tur.getHoras() << ":" << Tur.getMinutos ()<< "\t" << "Turno tomado. " <<endl;
+                    }
+                    y=0;
+                    }
                 }
             }
+            cout<<endl;
         }
     }
-    if (b==0){
-        for(j=0; j<24; j++)
-            {
-                    cout<<"Hora: "<<V[j].getHoras()<< ":" <<V[j].getMinutos()<<endl;
-            }
-    }
-    cout<< endl;
     system("pause");
 }
 
@@ -142,7 +164,7 @@ void TurnosProx7Dias(){
 void TurnosDispDiaProf(Fecha f, int LegProf)
 {
     Turno t;
-    int i,j,s,b=0;
+    int i,j,b=0;
     Hora V[24];
     Horarios(V);
     cout<<"Turnos disponibles del dia: "<< DiaDeLaSemana(f)<< " " <<f.getDia()<< "/"<<f.getMes()<< "/"<<f.getAnio()<<endl;
@@ -180,32 +202,19 @@ void TurnosDispDiaProf(Fecha f, int LegProf)
 
 void DiaProf()
 {
-    int LegProf;
+    int LegProf=0;
     Fecha f;
     int anio, mes, dia;
-    cout<< "Ingrese legajo profesional: "<<endl;
-    cin>> LegProf;
-    cout<< "ingrese anio a consultar: "<<endl;
-    cin>> anio;
-    f.setAnio(anio);
-    cout<< "Ingrese mes a consultar: "<<endl;
-    cin>> mes;
-    f.setMes(mes);
-    cout<< "Ingrese dia a consultar: "<<endl;
-    cin>> dia;
-    f.setDia(dia);
+    MostrarTodasLasJornadaProf();
+
+    do {
+        LegProf=ValidarLegajoProfesional(LegProf);
+    } while (LegProf==0);
+    f=ValidarFecha(f);
     while (FinDeSemana(f)==true)
     {
         cout<< "El dia seleccionado es fin de semana, ingrese otra fecha."<<endl;
-        cout<< "ingrese anio a consultar: "<<endl;
-        cin>> anio;
-        f.setAnio(anio);
-        cout<< "Ingrese mes a consultar: "<<endl;
-        cin>> mes;
-        f.setMes(mes);
-        cout<< "Ingrese dia a consultar: "<<endl;
-        cin>> dia;
-        f.setDia(dia);
+        f=ValidarFecha(f);
     }
     TurnosDispDiaProf(f,LegProf);
 }
@@ -271,6 +280,7 @@ void TurnosDispProx7Dias(){
             f.setDia(f.getDia()+1);
         }
         HorariosDisponiblesDelDia(f);
+        system("cls");
     }
 }
 

@@ -411,6 +411,7 @@ void EditarPaciente()
                 if (n==2){
                 aux.setEstadoPaciente(false);
                 }
+                aux.guardarEnDisco(i);
                 break;
             }
             aux.Mostrar();

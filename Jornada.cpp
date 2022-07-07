@@ -140,6 +140,19 @@ bool Jornada::GuardarEnDisco()
     return guardo;
 }
 
+bool Jornada::GuardarEnDisco(int nroRegistro)
+{
+    FILE *p = fopen("Jornada.dat", "rb+");
+    if (p==NULL)
+    {
+        return false;
+    }
+    fseek(p,nroRegistro*sizeof(Jornada),SEEK_SET);
+    bool guardo = fwrite (this, sizeof(Jornada), 1,p);
+    fclose(p);
+    return guardo;
+}
+
 void Jornada::MostrarJornada(){
     Profesional aux;
     int i;
@@ -204,7 +217,7 @@ void EditarJornada()
                 cout<< "Ingrese el nuevo Id: "<<endl;
                 cin>> Id;
                 j.setId(Id);
-                j.GuardarEnDisco();
+                j.GuardarEnDisco(i);
                 break;
             case 2:
             {
@@ -229,7 +242,7 @@ void EditarJornada()
                     }
                 }
                 j.setLegajoDelProfesional(LegajoDelProfesional);
-                j.GuardarEnDisco();
+                j.GuardarEnDisco(i);
             }
             break;
             case 3:
@@ -250,27 +263,27 @@ void EditarJornada()
                 case 1:
                     Dia= "Lunes";
                     j.setDia(Dia);
-                    j.GuardarEnDisco();
+                    j.GuardarEnDisco(i);
                     break;
                 case 2:
                     Dia= "Martes";
                     j.setDia(Dia);
-                    j.GuardarEnDisco();
+                    j.GuardarEnDisco(i);
                     break;
                 case 3:
                     Dia= "Miercoles";
                     j.setDia(Dia);
-                    j.GuardarEnDisco();
+                    j.GuardarEnDisco(i);
                     break;
                 case 4:
                     Dia= "Jueves";
                     j.setDia(Dia);
-                    j.GuardarEnDisco();
+                    j.GuardarEnDisco(i);
                     break;
                 case 5:
                     Dia= "Viernes";
                     j.setDia(Dia);
-                    j.GuardarEnDisco();
+                    j.GuardarEnDisco(i);
                     break;
                 }
             }
@@ -284,7 +297,7 @@ void EditarJornada()
                 e.setHoras(hora);
                 e.setMinutos(minutos);
                 j.setEntrada(e);
-                j.GuardarEnDisco();
+                j.GuardarEnDisco(i);
                 break;
             case 5:
                 cout<< "Indique Hora de salida: "<<endl;
@@ -294,7 +307,7 @@ void EditarJornada()
                 e.setHoras(hora);
                 e.setMinutos(minutos);
                 j.setSalida(e);
-                j.GuardarEnDisco();
+                j.GuardarEnDisco(i);
                 break;
             case 0:
                 return;
@@ -390,6 +403,8 @@ bool ProfDisponibleDia(Fecha FechaTurno)
     int i;
     int ValorDevuelto;
     int cantJornadas=CantidadRegistrosJornada();
+    cout<<endl;
+    cout<< "Profesionales que trabajan el dia "<<D<< ": " <<endl;
     for(i=0; i<cantJornadas; i++)
     {
         j.LeerDeDisco(i);

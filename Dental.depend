@@ -256,13 +256,13 @@
 	"Turno.h"
 	<string.h>
 
-1656937882 source:c:\users\dell\desktop\porfolio\proyecto dental\agenda.cpp
+1657163038 source:c:\users\dell\desktop\porfolio\proyecto dental\agenda.cpp
 	<iostream>
 	"Agenda.h"
 	"Turno.h"
 	"Validar.h"
 
-1656890359 c:\users\dell\desktop\porfolio\proyecto dental\agenda.h
+1656981309 c:\users\dell\desktop\porfolio\proyecto dental\agenda.h
 	"Turno.h"
 
 1656811307 c:\users\dell\desktop\porfolio\proyecto dental\turno.h
@@ -301,7 +301,7 @@
 	<iostream>
 	"Hora.h"
 
-1656900762 source:c:\users\dell\desktop\porfolio\proyecto dental\jornada.cpp
+1657118100 source:c:\users\dell\desktop\porfolio\proyecto dental\jornada.cpp
 	<iostream>
 	"Jornada.h"
 	<string>
@@ -309,11 +309,11 @@
 	"Profesional.h"
 	"Validar.h"
 
-1656419213 c:\users\dell\desktop\porfolio\proyecto dental\jornada.h
+1657117941 c:\users\dell\desktop\porfolio\proyecto dental\jornada.h
 	"Fecha.h"
 	"Hora.h"
 
-1656019157 source:c:\users\dell\desktop\porfolio\proyecto dental\main.cpp
+1656971513 source:c:\users\dell\desktop\porfolio\proyecto dental\main.cpp
 	<iostream>
 	<cstring>
 	<cstdlib>
@@ -324,8 +324,9 @@
 	"Hora.h"
 	"Turno.h"
 	"Agenda.h"
+	"Validar.h"
 
-1656806253 source:c:\users\dell\desktop\porfolio\proyecto dental\paciente.cpp
+1657164325 source:c:\users\dell\desktop\porfolio\proyecto dental\paciente.cpp
 	<iostream>
 	"Paciente.h"
 	<string>
@@ -336,24 +337,24 @@
 	"Persona.h"
 	<string>
 
-1656806386 source:c:\users\dell\desktop\porfolio\proyecto dental\profesional.cpp
+1657160290 source:c:\users\dell\desktop\porfolio\proyecto dental\profesional.cpp
 	<iostream>
 	"Profesional.h"
 	"Jornada.h"
 	"Validar.h"
 
-1656939525 source:c:\users\dell\desktop\porfolio\proyecto dental\turno.cpp
+1657042493 source:c:\users\dell\desktop\porfolio\proyecto dental\turno.cpp
 	<iostream>
 	"Turno.h"
 	<string.h>
 	"Validar.h"
 	"Profesional.h"
 
-1656885523 c:\users\dell\desktop\porfolio\proyecto dental\validar.h
+1657042493 c:\users\dell\desktop\porfolio\proyecto dental\validar.h
 	"Hora.h"
 	"Fecha.h"
 
-1656885857 source:c:\users\dell\desktop\porfolio\proyecto dental\validar.cpp
+1657162861 source:c:\users\dell\desktop\porfolio\proyecto dental\validar.cpp
 	<iostream>
 	"Validar.h"
 	"Profesional.h"

@@ -23,6 +23,7 @@ class Jornada{
         Hora getSalida();
         void CargarJornada();
         bool GuardarEnDisco();
+        bool GuardarEnDisco(int nroRegistro);
         void MostrarJornada();
         bool LeerDeDisco(int nroRegistro);
 };

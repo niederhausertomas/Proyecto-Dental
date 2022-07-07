@@ -3,7 +3,6 @@
 #include "Hora.h"
 #include "Fecha.h"
 
-
 int ValidarDia(int Dia);
 int ValidarMes(int Mes);
 int ValidarAnio(int Anio);
@@ -11,7 +10,7 @@ int ValidarLegajoProfesional(int Leg);
 int ValidarHora();
 int ValidarMinutos();
 Hora ValidarHorario();
-Hora ValidarHorarioConLegJornada(Hora HoraTurno, int LegajoProfesional);
+Hora ValidarHorarioConLegJornada(Hora HoraTurno, int LegajoProfesional,Fecha FechaTurno);
 int ValidarLegajoPaciente(int Leg);
 bool ValidarFechaPasado(Fecha f);
 Fecha ValidarFecha(Fecha f);

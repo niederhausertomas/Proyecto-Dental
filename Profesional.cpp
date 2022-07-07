@@ -195,6 +195,7 @@ void EditarProfesional()
             cout<< "8. Legajo del profesional: "<<endl;
             cout<< "9. Matricula del profesional: "<<endl;
             cout<<"10. Fecha de nacimiento: "<<endl;
+            cout<< "11. Estado del profesional: "<<endl;
             cout<< "0. Salir de modificacion: "<<endl;
             cin>>opcion;
             switch(opcion)
@@ -259,7 +260,7 @@ void EditarProfesional()
                 aux.guardarEnDisco(i);
                 break;
             case 10:
-                cout<< "Dia de nacimiento: "<<endl;
+                {cout<< "Dia de nacimiento: "<<endl;
                 cin>>Dia;
                 cout<< "Mes de nacimiento: "<<endl;
                 cin>>Mes;
@@ -267,11 +268,25 @@ void EditarProfesional()
                 cin>>Anio;
                 Fecha fechaNac(Dia, Mes, Anio);
                 aux.setFechaNacimiento(fechaNac);
+                aux.guardarEnDisco(i);}
+                break;
+            case 11:
+                int n;
+                do{
+                cout<< "Ingrese 1. para profesional activo, 2. Para profesional inactivo: "<<endl;
+                cin>> n;
+                } while(n<1||n>2);
+                if (n==1){
+                aux.setEstadoProfesional(true);
+                }
+                if (n==2){
+                aux.setEstadoProfesional(false);
+                }
                 aux.guardarEnDisco(i);
                 break;
-                /*case 0:
+            case 0:
                     return;
-                    break;*/
+                break;
             }
             cout<<endl;
             aux.mostrarProfesional();

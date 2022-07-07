@@ -15,5 +15,6 @@ void TurnosDispProx7Dias();
 void TurnosDispPorProf(Fecha f, int LegProf);
 void DiaProf();
 void TurnosDispProx7Prof();
+void CargarM(int M, Jornada j);
 
 #endif // AGENDA_H_INCLUDED

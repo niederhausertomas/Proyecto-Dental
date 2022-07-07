@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-# include<cstdlib>
+#include <cstdlib>
 using namespace std;
 #include "Persona.h"
 #include "Paciente.h"
@@ -9,6 +9,7 @@ using namespace std;
 #include "Hora.h"
 #include "Turno.h"
 #include "Agenda.h"
+#include "Validar.h"
 
 // Ver tema de la libreria rlutil para mejorar la estetica https://youtu.be/z2cfUpUqdTs a partir del minuto 55
 int main()
