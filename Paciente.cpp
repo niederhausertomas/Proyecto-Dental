@@ -293,6 +293,7 @@ void menuPacientes()
                 cout<< ".................................."<<endl<<endl;
                 listarPacientesActivos();
                 system("pause");
+                rlutil::cls();
                 break;
             case 3:
                 rlutil::cls();
@@ -300,6 +301,7 @@ void menuPacientes()
                 cout<< ".................................."<<endl<<endl;
                 listarPacientesInactivos();
                 system("pause");
+                rlutil::cls();
                 break;
             case 4:
                 rlutil::cls();
@@ -307,14 +309,19 @@ void menuPacientes()
                 cout<< ".................................."<<endl<<endl;
                 listarPacientes();
                 system("pause");
+                rlutil::cls();
                 break;
             case 5:
+                rlutil::cls();
                 BuscarPacientePorLegajo();
                 system("pause");
+                rlutil::cls();
                 break;
             case 6:
+                rlutil::cls();
                 EditarPaciente();
                 system("pause");
+                rlutil::cls();
                 break;
             case 7:
                 i=false;

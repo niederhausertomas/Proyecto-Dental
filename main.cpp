@@ -11,6 +11,7 @@ using namespace std;
 #include "Turno.h"
 #include "Agenda.h"
 #include "Validar.h"
+#include "Reportes.h"
 
 int main()
 {
@@ -33,8 +34,10 @@ int main()
         rlutil::locate(30,14);
         cout<< "4. Agenda: "<<endl;
         rlutil::locate(30,15);
-        cout<< "0. Cerrar sistema: "<<endl;
+        cout<< "5. Reportes: "<<endl;
         rlutil::locate(30,16);
+        cout<< "0. Cerrar sistema: "<<endl;
+        rlutil::locate(30,17);
         cout<< ".................................."<<endl<<endl;
         rlutil::locate(28,10+y);
         cout<< (char)175<<endl;
@@ -53,8 +56,8 @@ int main()
             rlutil::locate(28,10+y);
             cout<< " "<<endl;
             y++;
-            if(y>5){
-                y=5;
+            if(y>6){
+                y=6;
             }
             break;
         case 1: //enter
@@ -72,10 +75,14 @@ int main()
             MenuAgenda();
             break;
         case 5:
+            Reportes();
+            break;
+        case 6:
             return 0;
-            break;}
+            break;
         default:
             break;
+            }
         }
 
 
