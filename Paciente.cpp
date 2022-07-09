@@ -102,20 +102,59 @@ void Paciente::Cargar()
     rlutil::locate(48,16);
     getline(cin,Apellido);
     setApellido(Apellido);
+
+
+    rlutil::cls();
+    rlutil::locate(30,10);
     cout<< "Fecha de Nacimiento: "<<endl;
+    rlutil::locate(30,11);
     setFechaNacimiento(ValidarFecha(fechaNac));
+
+    rlutil::cls();
+    rlutil::locate(30,10);
+    cout<< "1. Cargar nuevo paciente: "<<endl;
+    rlutil::locate(30,11);
+    cout<< ".................................."<<endl<<endl;
+    rlutil::locate(30,12);
+    cout<< "Legajo del Paciente: ";
+    rlutil::locate(51,12);
+    cout<<getLegajo()<<endl;
+    rlutil::locate(30,13);
+    cout<< "DNI: "<<endl;
+    rlutil::locate(35,13);
+    cout<< getDni()<<endl;
+    rlutil::locate(30,14);
+    cout<< "Ingrese nomre: "<<endl;
+    rlutil::locate(45,14);
+    cout<< getNombre()<<endl;
+    rlutil::locate(30,15);
+    cout<< "Ingrese apellido: "<<endl;
+    rlutil::locate(48,15);
+    cout<<getApellido()<<endl;
+    rlutil::locate(30,16);
+    cout<< "Fecha de Nacimiento: "<<endl;
+    rlutil::locate(51,16);
+    cout<< getFechaNacimiento().getDia()<< "/"<< getFechaNacimiento().getMes()<< "/"<< getFechaNacimiento().getAnio()<<endl;
+    rlutil::locate(30,17);
     cout<< "Ingrese email: "<<endl;
     cin.ignore();
+    rlutil::locate(45,17);
     getline(cin,Email);
     setEmail(Email);
+    rlutil::locate(30,18);
     cout<< "Ingrese el domicilio: "<<endl;
+    rlutil::locate(52,18);
     getline(cin,Domicilio);
     setDomicilio(Domicilio);
+    rlutil::locate(30,19);
     cout<< "Ingrese el telefono: "<<endl;
+    rlutil::locate(51,19);
     getline(cin,Telefono);
     setTelefono(Telefono);
     setInasistencias(0);
+    rlutil::locate(30,20);
     cout<< "Ingrese numero de obra social: "<<endl;
+    rlutil::locate(61,20);
     cin>> nroObraSocial;
     setNroObraSocial(nroObraSocial);
     setEstadoPaciente(true);
@@ -236,13 +275,17 @@ void menuPacientes()
                 reg.Cargar();
                 if (reg.guardarEnDisco()==true)
                 {
+                    rlutil::locate(30,21);
                     cout<< "Paciente guardado correctamente. "<<endl;
                 }
                 else
                 {
+                    rlutil::locate(30,21);
                     cout<< "No se pudo guardar."<<endl;
                 };
+                rlutil::locate(30,22);
                 system("pause");
+                rlutil::cls();
                 break;
             case 2:
                 rlutil::cls();

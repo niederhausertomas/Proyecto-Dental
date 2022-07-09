@@ -327,7 +327,7 @@
 	"Agenda.h"
 	"Validar.h"
 
-1657381708 source:c:\users\dell\desktop\porfolio\proyecto dental\paciente.cpp
+1657397878 source:c:\users\dell\desktop\porfolio\proyecto dental\paciente.cpp
 	<iostream>
 	"Paciente.h"
 	<string>
@@ -356,7 +356,7 @@
 	"Hora.h"
 	"Fecha.h"
 
-1657384453 source:c:\users\dell\desktop\porfolio\proyecto dental\validar.cpp
+1657399015 source:c:\users\dell\desktop\porfolio\proyecto dental\validar.cpp
 	<iostream>
 	"Validar.h"
 	"Profesional.h"

@@ -76,33 +76,72 @@ bool ValidarFechaPasado(Fecha f)
 }
 
 int ValidarDia(int Dia){
+    int c=11;
+    rlutil::locate(30,c);
+    c++;
     cout<< "Ingrese dia: "<<endl;
+    rlutil::locate(30,c);
+    c++;
     cin>>Dia;
 while(Dia<1||Dia>31){
+    rlutil::locate(30,c);
+    c++;
+    rlutil::setColor(rlutil::RED);
     cout<< "Dia ingresado no valido: "<<endl;
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::locate(30,c);
+    c++;
     cout<< "Ingrese un numero de dia valido: "<<endl;
+    rlutil::locate(30,c);
+    c++;
     cin>> Dia;
 }
     return Dia;
 }
 
 int ValidarMes(int Mes){
+    int c=11;
+    rlutil::locate(30,c);
+    c++;
     cout<< "Ingrese Mes: "<<endl;
+    rlutil::locate(30,c);
+    c++;
     cin>>Mes;
 while(Mes<1||Mes>12){
+    rlutil::locate(30,c);
+    c++;
+    rlutil::setColor(rlutil::RED);
     cout<< "El mes ingresado no es valido: "<<endl;
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::locate(30,c);
+    c++;
     cout<< "Ingrese un numero de mes valido: "<<endl;
+    rlutil::locate(30,c);
+    c++;
     cin>> Mes;
 }
     return Mes;
 }
 
 int ValidarAnio(int Anio){
+    int c=11;
+    rlutil::locate(30,c);
+    c++;
     cout<< "Ingrese Anio: "<<endl;
+    rlutil::locate(30,c);
+    c++;
     cin>>Anio;
-while(Anio<1900){
+while(Anio<1900||Anio>2100){
+    rlutil::locate(30,c);
+    c++;
+    rlutil::setColor(rlutil::RED);
     cout<< "El anio ingresado no es valido: "<<endl;
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::locate(30,c);
+    c++;
     cout<< "Ingrese un numero de anio valido: "<<endl;
+    rlutil::locate(30,c);
+    c++;
     cin>> Anio;
 }
     return Anio;
@@ -112,8 +151,14 @@ Fecha ValidarFecha(Fecha f){
         int Dia, Mes, Anio;
         Dia=ValidarDia(Dia);
         f.setDia(Dia);
+        rlutil::cls();
+        rlutil::locate(30,10);
+        cout<< "Fecha de Nacimiento: "<<endl;
         Mes=ValidarMes(Mes);
         f.setMes(Mes);
+        rlutil::cls();
+        rlutil::locate(30,10);
+        cout<< "Fecha de Nacimiento: "<<endl;
         Anio=ValidarAnio(Anio);
         f.setAnio(Anio);
     return f;
