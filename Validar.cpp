@@ -6,6 +6,7 @@ using namespace std;
 #include "Profesional.h"
 #include "Paciente.h"
 #include "Jornada.h"
+#include "rlutil.h"
 
 void ValidarEstado(bool estado){
     if(estado==true)
@@ -29,8 +30,10 @@ int ValidarDniExistente(int DNI){
         aux.leerDeDisco(i);
         if(DNI==aux.getDni())
         {
-            cout<< "El DNI ingresado ya existe, ";
+            rlutil::setColor(rlutil::RED);
+            cout<< "El DNI ingresado ya existe! "<<endl;
             DNI=0;
+            rlutil::setColor(rlutil::WHITE);
             return DNI;
         }
     }
@@ -38,15 +41,23 @@ int ValidarDniExistente(int DNI){
 }
 
 int ValidarDni(int DNI){
+    int c=14;
     cout<< "Ingrese DNI: "<<endl;
+    rlutil::locate(43,14);
     cin>>DNI;
+    rlutil::locate(60,14);
     DNI=ValidarDniExistente(DNI);
     while(DNI>60000000||DNI<=0||cin.fail()==true){
+        rlutil::locate(90,c);
         cout<< "El dato ingresado no es valido"<<endl;
         cin.clear();
         cin.ignore(1000,'\n');
+        c++;
+        rlutil::locate(30,c);
         cout<< "Ingrese DNI: "<<endl;
+        rlutil::locate(43,c);
         cin>>DNI;
+        rlutil::locate(60,c);
         DNI=ValidarDniExistente(DNI);
     }
     return DNI;

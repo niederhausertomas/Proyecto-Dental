@@ -8,6 +8,7 @@ using namespace std;
 #include "rlutil.h"
 
 
+
 void Paciente::setLegajo(int legajo)
 {
     _legajo=legajo;
@@ -63,17 +64,42 @@ void Paciente::Cargar()
     Fecha fechaNac;
     string Nombre, Apellido, Email, Domicilio, Telefono;
     bool estadoPaciente;
+    rlutil::locate(30,10);
+    cout<< "1. Cargar nuevo paciente: "<<endl;
+    rlutil::locate(30,11);
+    cout<< ".................................."<<endl<<endl;
+    rlutil::locate(30,12);
     cout<< "Legajo del Paciente: ";
-    setLegajo( LegajoDePacienteNuevo());
-    cout<<getLegajo() <<endl;
+    setLegajo(LegajoDePacienteNuevo());
+    rlutil::locate(30,13);
+    cout<<getLegajo()<<endl;
+    rlutil::locate(30,14);
     DNI=ValidarDni(DNI);
     setDni(DNI);
+
+    rlutil::cls();
+    rlutil::locate(30,10);
+    cout<< "1. Cargar nuevo paciente: "<<endl;
+    rlutil::locate(30,11);
+    cout<< ".................................."<<endl<<endl;
+    rlutil::locate(30,12);
+    cout<< "Legajo del Paciente: ";
+    rlutil::locate(30,13);
+    cout<<getLegajo()<<endl;
+    rlutil::locate(30,14);
+    cout<< "DNI: "<<endl;
+    rlutil::locate(35,14);
+    cout<< getDni()<<endl;
+    rlutil::locate(30,15);
     cout<< "Ingrese nomre: "<<endl;
     cin.clear();
     cin.ignore(1000,'\n');
+    rlutil::locate(45,15);
     getline(cin,Nombre);
     setNombre(Nombre);
+    rlutil::locate(30,16);
     cout<< "Ingrese apellido: "<<endl;
+    rlutil::locate(48,16);
     getline(cin,Apellido);
     setApellido(Apellido);
     cout<< "Fecha de Nacimiento: "<<endl;
@@ -155,74 +181,105 @@ bool Paciente::guardarEnDisco(int nroRegistro)
 //-------------------------------------------------------------------------------------------------------------------
 void menuPacientes()
 {
-    int opcion;
+    int y=1;
     Paciente reg;
-    int i=0;
-    while(i==0)
+    rlutil::cls();
+    bool i=true;
+    while(i)
     {
-        system("cls");
+        rlutil::locate(30,10);
         cout<< "......... Menu Pacientes .........."<<endl;
+        rlutil::locate(30,11);
         cout<< "1. Cargar nuevo paciente: "<<endl;
+        rlutil::locate(30,12);
         cout<< "2. Listado de pacientes Activos: "<<endl;
+        rlutil::locate(30,13);
         cout<< "3. Listado de pacientes inactivos: "<<endl;
+        rlutil::locate(30,14);
         cout<< "4. Listar Todos los pacientes: "<<endl;
+        rlutil::locate(30,15);
         cout<< "5. Buscar paciente por legajo: "<<endl;
+        rlutil::locate(30,16);
         cout<< "6. Editar Paciente: "<<endl;
+        rlutil::locate(30,17);
         cout<< "0. Volver a menu principal: "<<endl;
+        rlutil::locate(30,18);
         cout<< ".................................."<<endl<<endl;
-        cout<< "Ingrese opcion: ";
-        cin>>opcion;
-        switch(opcion)
+        rlutil::locate(28,10+y);
+        cout<<(char)175<<endl;
+
+        switch(rlutil::getkey())
         {
-        case 1:
-            system("cls");
-            cout<< "1. Cargar nuevo paciente: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            reg.Cargar();
-            if (reg.guardarEnDisco()==true)
+        case 14: //up
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y--;
+            if(y<1)
             {
-                cout<< "Paciente guardado correctamente. "<<endl;
+                y=1;
             }
-            else
+            break;
+        case 15: //down
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y++;
+            if(y>7)
             {
-                cout<< "No se pudo guardar."<<endl;
-            };
-            system("pause");
+                y=7;
+            }
             break;
-        case 2:
-            system("cls");
-            cout<< "2. Listado de pacientes activos: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            listarPacientesActivos();
-            system("pause");
-            break;
-        case 3:
-            system("cls");
-            cout<< "3. Listado de pacientes inactivos: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            listarPacientesInactivos();
-            system("pause");
-            break;
-        case 4:
-            system("cls");
-            cout<< "4. Listado del total de pacientes: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            listarPacientes();
-            system("pause");
-            break;
-        case 5:
-            BuscarPacientePorLegajo();
-            system("pause");
-            break;
-        case 6:
-            EditarPaciente();
-            system("pause");
-            break;
-        case 0:
-            i=1;
-            rlutil::cls();
-            break;
+        case 1: //enter
+            switch(y)
+            {
+            case 1:
+                rlutil::cls();
+                reg.Cargar();
+                if (reg.guardarEnDisco()==true)
+                {
+                    cout<< "Paciente guardado correctamente. "<<endl;
+                }
+                else
+                {
+                    cout<< "No se pudo guardar."<<endl;
+                };
+                system("pause");
+                break;
+            case 2:
+                rlutil::cls();
+                cout<< "2. Listado de pacientes activos: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                listarPacientesActivos();
+                system("pause");
+                break;
+            case 3:
+                rlutil::cls();
+                cout<< "3. Listado de pacientes inactivos: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                listarPacientesInactivos();
+                system("pause");
+                break;
+            case 4:
+                rlutil::cls();
+                cout<< "4. Listado del total de pacientes: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                listarPacientes();
+                system("pause");
+                break;
+            case 5:
+                BuscarPacientePorLegajo();
+                system("pause");
+                break;
+            case 6:
+                EditarPaciente();
+                system("pause");
+                break;
+            case 7:
+                i=false;
+                rlutil::cls();
+                break;
+            }
         }
+
     }
 }
 

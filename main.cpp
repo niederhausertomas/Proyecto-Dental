@@ -16,14 +16,12 @@ int main()
 {
     rlutil::setBackgroundColor(rlutil::DARKGREY);
     rlutil::setColor(rlutil::WHITE);
-    int opcion, y;
+    int y=1;
     char confirmarCerrar;
     rlutil::hidecursor();
     rlutil::cls();
     while(true)
     {
-        Hora V[24];
-        Horarios(V);
         rlutil::locate(30,10);
         cout<< "..............Menu................"<<endl;
         rlutil::locate(30,11);

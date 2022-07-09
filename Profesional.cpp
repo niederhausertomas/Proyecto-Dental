@@ -34,7 +34,7 @@ bool Profesional::getEstadoProfesional()
 
 void Profesional::cargarProfesional()
 {
-    int Dni, Legajo, Matricula, Dia, Mes, Anio;
+    int Dni, Legajo, Matricula, Dia, Mes, Anio,x;
     string Nombre;
     string Apellido;
     string Email;
