@@ -2,6 +2,7 @@
 #define PROFESIONAL_CPP_INCLUDED
 #include<iostream>
 using namespace std;
+#include "rlutil.h"
 #include "Profesional.h"
 #include "Jornada.h"
 #include "Validar.h"
@@ -54,19 +55,30 @@ void Profesional::cargarProfesional()
             Leg=aux.getLegajo()+1;
         }
     }
+    rlutil::locate(30,10);
+    cout<< "Cargar nuevo profesional: "<<endl;
+    rlutil::locate(30,11);
+    cout<< ".................................."<<endl<<endl;
+    rlutil::locate(30,12);
     cout<< "Legajo del Profesional: ";
+    rlutil::locate(30,13);
     cout<< Leg<<endl;
     setLegajo(Leg);
+    rlutil::locate(30,14);
     Dni=ValidarDni(Dni);
     setDni(Dni);
+    rlutil::locate(30,11);
     cout<< "Ingrese nomre: "<<endl;
     cin.clear();
+    rlutil::locate(30,11);
     cin.ignore(1000,'\n');
     getline(cin,Nombre);
     setNombre(Nombre);
+    rlutil::locate(30,11);
     cout<< "Ingrese apellido: "<<endl;
     getline(cin,Apellido);
     setApellido(Apellido);
+    rlutil::locate(30,11);
     cout<< "Fecha de Nacimiento: "<<endl;
     setFechaNacimiento(ValidarFecha(fechaNac));
     cout<< "Ingrese email: "<<endl;
@@ -300,33 +312,66 @@ void EditarProfesional()
 
 void menuProfesionales()
 {
-    int opcion;
+    int y=1;
     Profesional prof;
-    int i=0;
-    while(i==0)
+    rlutil::cls();
+    bool i=true;
+    while(i)
     {
-        system("cls");
+        rlutil::locate(30,10);
         cout<< "....... Menu profesionales ......."<<endl;
+        rlutil::locate(30,11);
         cout<< "1. Cargar nuevo profesional: "<<endl;
+        rlutil::locate(30,12);
         cout<< "2. Listado de profesionales Activos: "<<endl;
+        rlutil::locate(30,13);
         cout<< "3. Listado de profesionales inactivos: "<<endl;
+        rlutil::locate(30,14);
         cout<< "4. Listado Todos los profesionales: "<<endl;
+        rlutil::locate(30,15);
         cout<< "5. Buscar profesional por legajo: "<<endl;
+        rlutil::locate(30,16);
         cout<< "6. Editar Profesional: "<<endl;
+        rlutil::locate(30,17);
         cout<< "7. Cargar jornada de Profesional: "<<endl;
+        rlutil::locate(30,18);
         cout<< "8. Editar Jornada de profesional: "<<endl;
+        rlutil::locate(30,19);
         cout<< "9. Mostrar jornada de un profesional: "<<endl;
+        rlutil::locate(30,20);
         cout<< "10. Mostrar todas las jornadas: "<<endl;
+        rlutil::locate(30,21);
         cout<< "0. Volver a menu principal: "<<endl;
+        rlutil::locate(30,22);
         cout<< ".................................."<<endl<<endl;
-        cout<< "Ingrese opcion: ";
-        cin>>opcion;
-        switch(opcion)
+        rlutil::locate(28,10+y);
+        cout<<(char)175<<endl;
+
+        switch(rlutil::getkey())
         {
+        case 14: //up
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y--;
+            if(y<1)
+            {
+                y=1;
+            }
+            break;
+        case 15: //down
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y++;
+            if(y>11)
+            {
+                y=11;
+            }
+            break;
+        case 1: //enter
+            switch(y)
+            {
         case 1:
-            system("cls");
-            cout<< "1. Cargar nuevo profesional: "<<endl;
-            cout<< ".................................."<<endl<<endl;
+            rlutil::cls();
             prof.cargarProfesional();
             if (prof.guardarEnDisco()==true)
             {
@@ -339,36 +384,45 @@ void menuProfesionales()
             cout<< endl;
             prof.mostrarProfesional();
             system("pause");
+            rlutil::cls();
             break;
         case 2:
-            system("cls");
+            rlutil::cls();
             cout<< "2. Listado de profesionales activos: "<<endl;
             cout<< ".................................."<<endl<<endl;
             listarProfesionalesActivos();
             system("pause");
+            rlutil::cls();
             break;
         case 3:
-            system("cls");
+            rlutil::cls();
             cout<< "3. Listado de profesionales Inactivos: "<<endl;
             cout<< ".................................."<<endl<<endl;
             listarProfesionalesInactivos();
             system("pause");
+            rlutil::cls();
             break;
         case 4:
-            system("cls");
+            rlutil::cls();
             cout<< "4. Listado de todos los profesionales: "<<endl;
             cout<< ".................................."<<endl<<endl;
             listarProfesionales();
             system("pause");
+            rlutil::cls();
             break;
         case 5:
+            rlutil::cls();
             BuscarProfesionalPorLegajo();
             system("pause");
+            rlutil::cls();
             break;
         case 6:
+            rlutil::cls();
             EditarProfesional();
+            rlutil::cls();
             break;
         case 7:
+            rlutil::cls();
             Jornada j;
             j.CargarJornada();
             cout<<endl;
@@ -383,25 +437,33 @@ void menuProfesionales()
             cout<< endl;
             j.MostrarJornada();
             system("pause");
+            rlutil::cls();
             break;
         case 8:
+            rlutil::cls();
             EditarJornada();
+            rlutil::cls();
             break;
         case 9:
+            rlutil::cls();
             MostrarJornadaProf();
+            rlutil::cls();
             break;
         case 10:
+            rlutil::cls();
             cout<<endl;
             cout<< "---- Todas las jornadas: ----"<<endl<<endl;
             MostrarTodasLasJornadaProf();
+            rlutil::cls();
             break;
-        case 0:
-            i=1;
+        case 11:
+            i=false;
+            rlutil::cls();
             break;
         }
     }
 }
-
+}
 void listarProfesionales()
 {
     Profesional aux;

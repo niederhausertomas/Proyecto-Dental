@@ -2,6 +2,7 @@
 #define TURNO_CPP_INCLUDED
 #include<iostream>
 using namespace std;
+#include "rlutil.h"
 #include "Turno.h"
 #include <string.h>
 #include "Validar.h"
@@ -326,25 +327,54 @@ void EditarTurno()
 
 void MenuTurnos()
 {
-    int opcion;
+    int y=1;
     Turno t;
-    int i=0;
-    while(i==0)
+    bool i=true;
+    rlutil::cls();
+    while(i)
     {
-        system("cls");
+        rlutil::locate(30,10);
         cout<< "....... Menu Turnos ......."<<endl;
+        rlutil::locate(30,11);
         cout<< "1. Cargar nuevo turno: "<<endl;
+        rlutil::locate(30,12);
         cout<< "2. Listado de turnos: "<<endl;
+        rlutil::locate(30,13);
         cout<< "3. Editar Turno: "<<endl;
+        rlutil::locate(30,14);
         cout<< "4. Mostrar Todas las Jornadas: "<<endl;
+        rlutil::locate(30,15);
         cout<< "0. Volver a menu principal: "<<endl;
+        rlutil::locate(30,16);
         cout<< ".................................."<<endl<<endl;
-        cout<< "Ingrese opcion: ";
-        cin>>opcion;
-        switch(opcion)
+        rlutil::locate(28,10+y);
+        cout<<(char)175<<endl;
+
+        switch(rlutil::getkey())
+        {
+        case 14: //up
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y--;
+            if(y<1)
+            {
+                y=1;
+            }
+            break;
+        case 15: //down
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y++;
+            if(y>5)
+            {
+                y=5;
+            }
+            break;
+        case 1: //enter
+        switch(y)
         {
         case 1:
-            system("cls");
+            rlutil::cls();
             cout<< "1. Cargar nuevo turno: "<<endl;
             cout<< ".................................."<<endl<<endl;
             t.Cargar();
@@ -357,28 +387,35 @@ void MenuTurnos()
                 cout<< "No se pudo guardar."<<endl;
             };
             system("pause");
+            rlutil::cls();
             break;
         case 2:
-            system("cls");
+            rlutil::cls();
             cout<< "2. Listado de Turnos: "<<endl;
             cout<< ".................................."<<endl<<endl;
             ListarTurnos();
             system("pause");
+            rlutil::cls();
             break;
         case 3:
+            rlutil::cls();
             EditarTurno();
+            rlutil::cls();
             break;
         case 4:
+            rlutil::cls();
             cout<<endl;
             cout<< " Todas las jornadas: "<<endl;
             cout<< "-------------------------"<<endl;
             MostrarTodasLasJornadaProf();
+            rlutil::cls();
             break;
-        case 0:
-            i=1;
+        case 5:
+            i=false;
+            rlutil::cls();
             break;
         }
     }
 }
-
+}
 #endif // TURNO_CPP_INCLUDED
