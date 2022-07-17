@@ -33,19 +33,10 @@ bool Profesional::getEstadoProfesional()
     return _estadoProfesional;
 }
 
-void Profesional::cargarProfesional()
-{
-    int Dni, Legajo, Matricula, Dia, Mes, Anio,x;
-    string Nombre;
-    string Apellido;
-    string Email;
-    string Domicilio;
-    string Telefono;
-    bool EstadoProfesional;
-    Fecha fechaNac;
+int LegajoDeProfesionalNuevo(){
     int Leg=1;
-    Profesional aux;
     int i;
+    Profesional aux;
     int cantProfesionales=cantidadRegistrosProfesionales();
     for(i=0; i<cantProfesionales; i++)
     {
@@ -55,22 +46,48 @@ void Profesional::cargarProfesional()
             Leg=aux.getLegajo()+1;
         }
     }
+    return Leg;
+}
+
+
+
+
+
+void Profesional::cargarProfesional()
+{
+    int Leg,Dni, Legajo, Matricula, Dia, Mes, Anio,x;
+    string Nombre, Apellido, Email, Domicilio, Telefono;
+    bool EstadoProfesional;
+    Fecha fechaNac;
     rlutil::locate(30,10);
     cout<< "Cargar nuevo profesional: "<<endl;
     rlutil::locate(30,11);
     cout<< ".................................."<<endl<<endl;
     rlutil::locate(30,12);
     cout<< "Legajo del Profesional: ";
-    rlutil::locate(30,13);
+    rlutil::locate(54,12);
+    Leg=LegajoDeProfesionalNuevo();
     cout<< Leg<<endl;
     setLegajo(Leg);
     rlutil::locate(30,14);
     Dni=ValidarDni(Dni);
     setDni(Dni);
+    rlutil::cls();
+
+    rlutil::locate(30,10);
+    cout<< "Cargar nuevo profesional: "<<endl;
     rlutil::locate(30,11);
+    cout<< ".................................."<<endl<<endl;
+    rlutil::locate(30,12);
+    cout<< "Legajo del Profesional: ";
+    rlutil::locate(54,12);
+    cout<< Leg<<endl;
+    rlutil::locate(30,13);
+    cout<< "DNI: "<<getDni();
+    rlutil::locate(30,14);
     cout<< "Ingrese nomre: "<<endl;
     cin.clear();
-    rlutil::locate(30,11);
+    rlutil::locate(50,14);
     cin.ignore(1000,'\n');
     getline(cin,Nombre);
     setNombre(Nombre);
@@ -464,6 +481,7 @@ void menuProfesionales()
     }
 }
 }
+
 void listarProfesionales()
 {
     Profesional aux;

@@ -340,14 +340,14 @@
 	"Persona.h"
 	<string>
 
-1657489386 source:c:\users\dell\desktop\porfolio\proyecto dental\profesional.cpp
+1658017587 source:c:\users\dell\desktop\porfolio\proyecto dental\profesional.cpp
 	<iostream>
 	"rlutil.h"
 	"Profesional.h"
 	"Jornada.h"
 	"Validar.h"
 
-1657489516 source:c:\users\dell\desktop\porfolio\proyecto dental\turno.cpp
+1657489743 source:c:\users\dell\desktop\porfolio\proyecto dental\turno.cpp
 	<iostream>
 	"rlutil.h"
 	"Turno.h"

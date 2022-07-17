@@ -2,6 +2,7 @@
 #define AGENDA_CPP_INCLUDED
 #include<iostream>
 using namespace std;
+#include "rlutil.h"
 #include "Agenda.h"
 #include "Turno.h"
 #include "Validar.h"
@@ -225,9 +226,11 @@ void DiaProf()
     Fecha f;
     MostrarTodasLasJornadaProf();
 
-    do {
+    do
+    {
         LegProf=ValidarLegajoProfesional(LegProf);
-    } while (LegProf==0);
+    }
+    while (LegProf==0);
     f=ValidarFecha(f);
     while (FinDeSemana(f)==true)
     {
@@ -238,52 +241,87 @@ void DiaProf()
     TurnosDispDiaProf(f,LegProf);
 }
 
-void TurnosDispProx7Prof(){
+void TurnosDispProx7Prof()
+{
     Fecha f;
     f.FechaActual();
     int LegProf, i;
     cout<< "Ingrese legajo del profesional: "<<endl;
     cin>> LegProf;
     f.setDia(f.getDia()-1);
-    for (i=0;i<7;i++){
+    for (i=0; i<7; i++)
+    {
         f.setDia(f.getDia()+1);
-        while(FinDeSemana(f)==true){
+        while(FinDeSemana(f)==true)
+        {
             f.setDia(f.getDia()+1);
         }
         TurnosDispDiaProf(f,LegProf);
     }
 }
 
-void TurnosDispPorProf(){
-    int opcion;
+void TurnosDispPorProf()
+{
+    int y=1;
     int i=0;
+    rlutil::cls();
     while(i==0)
     {
-        system("cls");
+        rlutil::locate(30,10);
         cout<< "....... Turnos por profesional ......."<<endl;
+        rlutil::locate(30,11);
         cout<< "1. Mostrar Turnos disponibles por dia: "<<endl;
+        rlutil::locate(30,12);
         cout<< "2. Mostrar Turnos disponibles de los proximos 7 dias: "<<endl;
+        rlutil::locate(30,13);
         cout<< "0. Volver a menu principal: "<<endl;
+        rlutil::locate(30,14);
         cout<< ".................................."<<endl<<endl;
-        cout<< "Ingrese opcion: ";
-        cin>>opcion;
-        switch(opcion)
+        rlutil::locate(28,10+y);
+        cout<< (char)175<<endl;
+
+        switch(rlutil::getkey())
         {
-        case 1:
-            system("cls");
-            cout<< "1. Mostrar Turnos disponibles del dia: "<<endl;
-            cout<< "........................................."<<endl;
-            DiaProf();
+        case 14: //up
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y--;
+            if(y<1)
+            {
+                y=1;
+            }
             break;
-        case 2:
-            system("cls");
-            cout<< "2. Mostrar Turnos disponibles de los proximos 7 dias: "<<endl;
-            cout<< "..................................................."<<endl<<endl;
-            TurnosDispProx7Prof();
+        case 15: //down
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y++;
+            if(y>3)
+            {
+                y=3;
+            }
             break;
-        case 0:
-            i=1;
-            break;
+        case 1: //enter
+            switch(y)
+            {
+            case 1:
+                rlutil::cls();
+                cout<< "1. Mostrar Turnos disponibles del dia: "<<endl;
+                cout<< "........................................."<<endl;
+                DiaProf();
+                rlutil::cls();
+                break;
+            case 2:
+                rlutil::cls();
+                cout<< "2. Mostrar Turnos disponibles de los proximos 7 dias: "<<endl;
+                cout<< "..................................................."<<endl<<endl;
+                TurnosDispProx7Prof();
+                rlutil::cls();
+                break;
+            case 3:
+                i=1;
+                rlutil::cls();
+                break;
+            }
         }
     }
 }
@@ -305,75 +343,121 @@ void TurnosDispProx7Dias(){
 
 void MenuAgenda()
 {
-    int opcion;
     int i=0;
+    int y=1;
+    rlutil::cls();
     while(i==0)
     {
-        system("cls");
+        rlutil::locate(30,10);
         cout<< "....... Menu Agenda ......."<<endl;
+        rlutil::locate(30,11);
         cout<< "1. Turnos del dia: "<<endl;
+        rlutil::locate(30,12);
         cout<< "2. Turnos de los proximos 7 dias: "<<endl;
+        rlutil::locate(30,13);
         cout<< "3. Turnos por mes: "<<endl;
+        rlutil::locate(30,14);
         cout<< "4. Turnos por paciente: "<<endl;
+        rlutil::locate(30,15);
         cout<< "5. Turnos disponibles por dia: "<<endl;
+        rlutil::locate(30,16);
         cout<< "6. Turnos disponibles de los proximos 7 dias: "<<endl;
+        rlutil::locate(30,17);
         cout<< "7. Turnos disponibles por profesional: "<<endl;
+        rlutil::locate(30,18);
         cout<< "0. Volver a menu principal: "<<endl;
-        cout<< ".................................."<<endl<<endl;
-        cout<< "Ingrese opcion: ";
-        cin>>opcion;
-        switch(opcion)
+        rlutil::locate(30,19);
+        cout<< ".................................."<<endl;
+        rlutil::locate(28,10+y);
+        cout<< (char)175<<endl;
+
+        switch(rlutil::getkey())
         {
-        case 1:{
-            system("cls");
-            cout<< "1. Turnos del dia: "<<endl<<endl;
-            Fecha f;
-            f.FechaActual();
-            if (FinDeSemana(f)==true){
-                cout<<"Hoy es fin de semana. y no hay turnos."<<endl;
-                system("pause");
+        case 14: //up
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y--;
+            if(y<1)
+            {
+                y=1;
+            }
+            break;
+        case 15: //down
+            rlutil::locate(28,10+y);
+            cout<< " "<<endl;
+            y++;
+            if(y>8)
+            {
+                y=8;
+            }
+            break;
+        case 1: //enter
+            switch(y)
+            {
+            case 1:
+            {
+                rlutil::cls();
+                cout<< "1. Turnos del dia: "<<endl<<endl;
+                Fecha f;
+                f.FechaActual();
+                if (FinDeSemana(f)==true)
+                {
+                    cout<<"Hoy es fin de semana. y no hay turnos."<<endl;
+                    system("pause");
+                    rlutil::cls();
+                    break;
+                }
+                TurnosDelDia(f);
+            }
+            rlutil::cls();
+            break;
+            case 2:
+                rlutil::cls();
+                cout<< "2. Turnos de los proximos 7 dias: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                TurnosProx7Dias();
+                rlutil::cls();
+                break;
+            case 3:
+                rlutil::cls();
+                cout<< "3. Turnos por mes: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                TurnosMes();
+                rlutil::cls();
+                break;
+            case 4:
+                rlutil::cls();
+                cout<< "4. Turnos por paciente: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                TurnosPaciente();
+                rlutil::cls();
+                break;
+            case 5:
+                rlutil::cls();
+                cout<< "5. Turnos disponibles por dia: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                TurnosDispDia();
+                rlutil::cls();
+                break;
+            case 6:
+                rlutil::cls();
+                cout<< "6. Turnos disponibles de los proximos 7 dias: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                TurnosDispProx7Dias();
+                rlutil::cls();
+                break;
+            case 7:
+                rlutil::cls();
+                cout<< "7. Turnos disponibles por profesional: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                TurnosDispPorProf();
+                rlutil::cls();
+                break;
+            case 8:
+                i=1;
+                rlutil::cls();
                 break;
             }
-            TurnosDelDia(f);}
-            break;
-        case 2:
-            system("cls");
-            cout<< "2. Turnos de los proximos 7 dias: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            TurnosProx7Dias();
-            break;
-        case 3:
-            system("cls");
-            cout<< "3. Turnos por mes: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            TurnosMes();
-            break;
-        case 4:
-            system("cls");
-            cout<< "4. Turnos por paciente: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            TurnosPaciente();
-            break;
-        case 5:
-            system("cls");
-            cout<< "5. Turnos disponibles por dia: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            TurnosDispDia();
-            break;
-        case 6:
-            system("cls");
-            cout<< "6. Turnos disponibles de los proximos 7 dias: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            TurnosDispProx7Dias();
-            break;
-        case 7:
-            cout<< "7. Turnos disponibles por profesional: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            TurnosDispPorProf();
-            break;
-        case 0:
-            i=1;
-            break;
         }
     }
 }
