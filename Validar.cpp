@@ -47,9 +47,11 @@ int ValidarDni(int DNI){
     cin>>DNI;
     rlutil::locate(60,14);
     DNI=ValidarDniExistente(DNI);
-    while(DNI>60000000||DNI<=0||cin.fail()==true){
+    while(DNI>60000000||DNI<11111111||cin.fail()==true){
         rlutil::locate(90,c);
+        rlutil::setColor(rlutil::RED);
         cout<< "El dato ingresado no es valido"<<endl;
+        rlutil::setColor(rlutil::WHITE);
         cin.clear();
         cin.ignore(1000,'\n');
         c++;

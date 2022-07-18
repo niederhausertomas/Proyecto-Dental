@@ -22,6 +22,7 @@ class Jornada{
         Hora getEntrada();
         Hora getSalida();
         void CargarJornada();
+        bool VerificarJornada(Jornada j);
         bool GuardarEnDisco();
         bool GuardarEnDisco(int nroRegistro);
         void MostrarJornada();
@@ -37,4 +38,5 @@ void MostrarJornadaProf();
 void MostrarTodasLasJornadaProf();
 bool ProfDisponibleDia(Fecha FechaTurno);
 int ProfParaTurno(Fecha FechaTurno, int Leg);
+int IdDeJornadaNuevo();
 #endif // JORNADA_H_INCLUDED

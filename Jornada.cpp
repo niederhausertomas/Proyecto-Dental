@@ -7,6 +7,7 @@ using namespace std;
 #include <cstring>
 #include "Profesional.h"
 #include "Validar.h"
+#include "rlutil.h"
 
 void Jornada::setId(int Id){
     _Id=Id;
@@ -51,27 +52,64 @@ Hora Jornada::getSalida(){
     return _Salida;
 }
 
+int IdDeJornadaNuevo(){
+    Jornada jo;
+    int i;
+    int Id=1;
+    int cantJornada=CantidadRegistrosJornada();
+    for(i=0; i<cantJornada; i++)
+    {
+        jo.LeerDeDisco(i);
+        if(Id<=jo.getId())
+        {
+            Id=jo.getId()+1;
+        }
+    }
+    return Id;
+}
+
+bool Jornada::VerificarJornada(Jornada j){
+    Jornada jor;
+    int i,ValorDevuelto;
+    int cantJornadas=CantidadRegistrosJornada();
+    if(j.getEntrada().getHoras()>j.getSalida().getHoras()){
+        rlutil::setColor(rlutil::RED);
+        cout<< "Entrada "<< j.getEntrada().getHoras()<<endl;
+        cout<< "Salida"<< j.getSalida().getHoras()<<endl;
+        cout<< "El horario de entrada es mayor al horario de salida!! " <<endl;
+        rlutil::setColor(rlutil::WHITE);
+        return false;
+    }
+    if(j.getEntrada().getHoras()<8||j.getEntrada().getHoras()>20||j.getSalida().getHoras()>20||j.getSalida().getHoras()<8){
+        rlutil::setColor(rlutil::RED);
+        cout<< "El horario de la jornada esta por fuera del horario de atencion de centro odontologico. " <<endl;
+        rlutil::setColor(rlutil::WHITE);
+        return false;
+    }
+    for(i=0; i<cantJornadas; i++)
+    {
+        jor.LeerDeDisco(i);
+        ValorDevuelto=strcmp(j.getDia().c_str(),jor.getDia().c_str());
+        if(ValorDevuelto==0&&j.getLegajoDelProfesional()==jor.getLegajoDelProfesional()&&j.getEntrada().getHoras()<jor.getSalida().getHoras()&&j.getSalida().getHoras()>jor.getEntrada().getHoras()){
+            rlutil::setColor(rlutil::RED);
+            cout<< "La jornada se superpone con otra jornada del mismo profesional! "<<endl;
+            rlutil::setColor(rlutil::WHITE);
+            return false;
+        }
+    }
+    return true;
+}
+
 void Jornada::CargarJornada()
 {
     system("cls");
     int hora, minutos;
     int LegajoDelProfesional=0;
     Profesional aux;
-    int i,j=0;
-    int Id=1;
-    Jornada jo;
-    int t;
-    int cantJornada=CantidadRegistrosJornada();
-    for(t=0; t<cantJornada; t++)
-    {
-        jo.LeerDeDisco(t);
-        if(Id<=jo.getId())
-        {
-            Id=jo.getId()+1;
-        }
-    }
-    cout<< "Id de la Jornada: " <<Id <<endl;
-    setId(Id);
+    bool Verificar=false;
+    setId(IdDeJornadaNuevo());
+    cout<< "Id de la Jornada: " << getId() <<endl;
+    do {
     while (LegajoDelProfesional==0){
         LegajoDelProfesional=ValidarLegajoProfesional(LegajoDelProfesional);
     }
@@ -126,6 +164,8 @@ void Jornada::CargarJornada()
     e.setHoras(hora);
     e.setMinutos(minutos);
     setSalida(e);
+    Verificar=VerificarJornada(*this);
+    }while (Verificar==false);
 }
 
 bool Jornada::GuardarEnDisco()
@@ -187,6 +227,7 @@ int CantidadRegistrosJornada()
 void EditarJornada()
 {
     int Id;
+    Hora e;
     cout<<"Ingrese Id de la jornada: ";
     cin>> Id;
     Jornada j;
@@ -198,7 +239,6 @@ void EditarJornada()
         if(j.getId()==Id)
         {
             int opcion;
-            int _Id;
             string Dia;
             int LegajoDelProfesional;
             int hora, minutos;
@@ -293,7 +333,6 @@ void EditarJornada()
                 cin>> hora;
                 cout<< "Minutos de entrada: "<<endl;
                 cin>> minutos;
-                Hora e;
                 e.setHoras(hora);
                 e.setMinutos(minutos);
                 j.setEntrada(e);
@@ -352,6 +391,7 @@ int BuscarJornadaPorLegajoProfesional()
         }
     }
     cout<<"No hay jornadas para el profesional."<<endl;
+    return 0;
 }
 
 void MostrarJornadaProf()
@@ -449,5 +489,6 @@ int ProfParaTurno(Fecha FechaTurno, int Leg){
         system("pause");
         return 0;
     }
+    return 0;
 }
 #endif // JORNADA_CPP_INCLUDED

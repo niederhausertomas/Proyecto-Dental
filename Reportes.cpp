@@ -4,6 +4,10 @@
 using namespace std;
 #include "rlutil.h"
 
+
+
+
+
 void Reportes(){
         rlutil::cls();
         rlutil::locate(30,10);

@@ -49,10 +49,6 @@ int LegajoDeProfesionalNuevo(){
     return Leg;
 }
 
-
-
-
-
 void Profesional::cargarProfesional()
 {
     int Leg,Dni, Legajo, Matricula, Dia, Mes, Anio,x;
@@ -87,28 +83,62 @@ void Profesional::cargarProfesional()
     rlutil::locate(30,14);
     cout<< "Ingrese nomre: "<<endl;
     cin.clear();
-    rlutil::locate(50,14);
+    rlutil::locate(45,14);
     cin.ignore(1000,'\n');
     getline(cin,Nombre);
     setNombre(Nombre);
-    rlutil::locate(30,11);
+    rlutil::locate(30,15);
     cout<< "Ingrese apellido: "<<endl;
+    rlutil::locate(48,15);
     getline(cin,Apellido);
     setApellido(Apellido);
-    rlutil::locate(30,11);
-    cout<< "Fecha de Nacimiento: "<<endl;
+    rlutil::cls();
+
+    rlutil::locate(30,16);
     setFechaNacimiento(ValidarFecha(fechaNac));
+    rlutil::cls();
+
+    rlutil::locate(30,10);
+    cout<< "Cargar nuevo profesional: "<<endl;
+    rlutil::locate(30,11);
+    cout<< ".................................."<<endl<<endl;
+    rlutil::locate(30,12);
+    cout<< "Legajo del Profesional: ";
+    rlutil::locate(54,12);
+    cout<< Leg<<endl;
+    rlutil::locate(30,13);
+    cout<< "DNI: "<<getDni();
+    rlutil::locate(30,14);
+    cout<< "Ingrese nomre: "<<endl;
+    rlutil::locate(45,14);
+    getNombre();
+    rlutil::locate(30,15);
+    cout<< "Ingrese apellido: "<<endl;
+    rlutil::locate(48,15);
+    getApellido();
+    rlutil::locate(30,16);
+    cout<< "Fecha de Nacimiento: "<<endl;
+    rlutil::locate(50,16);
+    cout<<getFechaNacimiento().getDia()<<"/"<<getFechaNacimiento().getMes()<<"/"<<getFechaNacimiento().getAnio()<<endl;
+    rlutil::locate(30,17);
     cout<< "Ingrese email: "<<endl;
     cin.ignore();
+    rlutil::locate(45,17);
     getline(cin,Email);
     setEmail(Email);
+    rlutil::locate(30,18);
     cout<< "Ingrese el domicilio: "<<endl;
+    rlutil::locate(53,18);
     getline(cin,Domicilio);
     setDomicilio(Domicilio);
+    rlutil::locate(30,19);
     cout<< "Ingrese el telefono: "<<endl;
+    rlutil::locate(51,19);
     getline(cin,Telefono);
     setTelefono(Telefono);
+    rlutil::locate(30,20);
     cout<< "Ingrese matricula del profesional: "<<endl;
+    rlutil::locate(66,20);
     cin>> Matricula;
     setMatricula(Matricula);
     setEstadoProfesional(true);
@@ -175,6 +205,7 @@ int BuscarProfesionalPorLegajo()
     int leg;
     cout<<"Ingrese legajo del profesional: ";
     cin>> leg;
+    cout<< ".................................."<<endl<<endl;
     Profesional aux;
     int i;
     int cantProfesionales=cantidadRegistrosProfesionales();
@@ -354,7 +385,7 @@ void menuProfesionales()
         rlutil::locate(30,18);
         cout<< "8. Editar Jornada de profesional: "<<endl;
         rlutil::locate(30,19);
-        cout<< "9. Mostrar jornada de un profesional: "<<endl;
+        cout<< "9. Mostrar todas las jornadas de un profesional: "<<endl;
         rlutil::locate(30,20);
         cout<< "10. Mostrar todas las jornadas: "<<endl;
         rlutil::locate(30,21);
@@ -392,14 +423,15 @@ void menuProfesionales()
             prof.cargarProfesional();
             if (prof.guardarEnDisco()==true)
             {
+                rlutil::locate(30,20);
                 cout<< "Profesional guardado correctamente. "<<endl;
             }
             else
             {
+                rlutil::locate(30,20);
                 cout<< "No se pudo guardar."<<endl;
             };
-            cout<< endl;
-            prof.mostrarProfesional();
+            cout<<endl;
             system("pause");
             rlutil::cls();
             break;
