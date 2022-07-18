@@ -14,7 +14,7 @@ void Turno::setId(int Id)
     _Id=Id;
 }
 
-void Turno::setEstadoTurno(bool EstadoTurno)
+void Turno::setEstadoTurno(int EstadoTurno)
 {
     _EstadoTurno=EstadoTurno;
 }
@@ -49,7 +49,7 @@ int Turno::getId()
     return _Id;
 }
 
-bool Turno::getEstadoTurno()
+int Turno::getEstadoTurno()
 {
     return _EstadoTurno;
 }
@@ -93,8 +93,6 @@ int Turno::GenerarIdTurno(){
             Id=getId()+1;
         }
     }
-    cout<< "Id del Turno: ";
-    cout<< Id<<endl;
     return Id;
 }
 
@@ -103,16 +101,20 @@ void Turno::Cargar()
     int LegajoPaciente;
     string Motivo;
     setId(GenerarIdTurno());
-    setEstadoTurno(true);
+    setEstadoTurno(1);
     setLegajoProfesional(0);
+    do
+    {
+        rlutil::cls();
+        setFechaTurno(ValidarFecha(getFechaTurno()));
+        rlutil::cls();
+    }
+    while (ValidarFechaPasado(getFechaTurno())==false || FinDeSemana(getFechaTurno())==true );
+    setFechaTurno(getFechaTurno());
+    cout<< "1. Cargar nuevo turno para el : "<< getFechaTurno().getDia()<< "/"<<getFechaTurno().getMes()<< "/"<<getFechaTurno().getAnio() <<endl;
+    cout<< "........................................"<<endl<<endl;
     while (getLegajoProfesional()==0)
     {
-        do
-        {
-            setFechaTurno(ValidarFecha(getFechaTurno()));
-        }
-        while (ValidarFechaPasado(getFechaTurno())==false || FinDeSemana(getFechaTurno())==true );
-        setFechaTurno(getFechaTurno());
         if (ProfDisponibleDia(getFechaTurno())==true)
         {
             setLegajoProfesional(ValidarLegajoProfesional(getLegajoProfesional()));
@@ -120,15 +122,19 @@ void Turno::Cargar()
         setLegajoProfesional(ProfParaTurno(getFechaTurno(), getLegajoProfesional()));
     }
     setLegajoProfesional(getLegajoProfesional());
-    do {
-    cout<< "Ingrese legajo del paciente: ";
-    cin>> LegajoPaciente;
-    } while (ValidarLegajoPaciente(LegajoPaciente)==0);
+    do
+    {
+        cout<< "Ingrese legajo del paciente: ";
+        cin>> LegajoPaciente;
+    }
+    while (ValidarLegajoPaciente(LegajoPaciente)==0);
     setLegajoPaciente(LegajoPaciente);
-    do{
-    setHoraTurno(ValidarHorario());
-    setHoraTurno (ValidarHorarioConLegJornada(getHoraTurno(), getLegajoProfesional(), getFechaTurno()));
-    }while(getHoraTurno().getHoras()==0);
+    do
+    {
+        setHoraTurno(ValidarHorario());
+        setHoraTurno (ValidarHorarioConLegJornada(getHoraTurno(), getLegajoProfesional(), getFechaTurno()));
+    }
+    while(getHoraTurno().getHoras()==0);
     cout<< "Ingrese motivo: ";
     cin.ignore();
     getline(cin,Motivo);
@@ -139,13 +145,16 @@ void Turno::Mostrar()
 {
     cout<< "Id: " <<getId()<<endl;
     cout<< "Estado del turno: ";
-    if(getEstadoTurno()==true)
+    if(getEstadoTurno()==1)
     {
         cout<< " Activo. ";
     }
-    else if(getEstadoTurno()==false)
+    else if(getEstadoTurno()==2)
     {
-        cout<< " Inactivo. ";
+        cout<< " Falta. ";
+    }else if(getEstadoTurno()==3)
+    {
+        cout<< " Cancelado con anticipacion. ";
     }
     cout<<endl;
     cout<< "Fecha: "<< DiaDeLaSemana(getFechaTurno())<< " " ;
@@ -238,7 +247,7 @@ void EditarTurno()
         {
             int opcion;
             int id;
-            bool EstadoTurno;
+            int EstadoTurno=4;
             Fecha FechaTurno;
             int Dia, Mes,Anio;
             Hora HoraTurno;
@@ -268,8 +277,16 @@ void EditarTurno()
                 aux.GuardarEnDisco(i);
                 break;
             case 2:
-                cout<< "Ingrese estado del turno: ";
+                while (EstadoTurno==4){
+                cout<< "Ingrese estado del turno (1- activo; 2- Falta; 3-Cancelacion con 2 dias de anticipacion.): "<<endl;
                 cin>> EstadoTurno;
+                if(EstadoTurno<1&&EstadoTurno>3){
+                    rlutil::setColor(rlutil::RED);
+                    cout<< "El estado ingresado no es valido!!"<<endl;
+                    rlutil::setColor(rlutil::WHITE);
+                    EstadoTurno=4;
+                }
+                }
                 aux.setEstadoTurno(EstadoTurno);
                 aux.GuardarEnDisco(i);
                 break;

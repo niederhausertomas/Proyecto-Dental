@@ -74,8 +74,6 @@ bool Jornada::VerificarJornada(Jornada j){
     int cantJornadas=CantidadRegistrosJornada();
     if(j.getEntrada().getHoras()>j.getSalida().getHoras()){
         rlutil::setColor(rlutil::RED);
-        cout<< "Entrada "<< j.getEntrada().getHoras()<<endl;
-        cout<< "Salida"<< j.getSalida().getHoras()<<endl;
         cout<< "El horario de entrada es mayor al horario de salida!! " <<endl;
         rlutil::setColor(rlutil::WHITE);
         return false;
@@ -468,27 +466,5 @@ bool ProfDisponibleDia(Fecha FechaTurno)
     }
 }
 
-int ProfParaTurno(Fecha FechaTurno, int Leg){
-    string D=DiaDeLaSemana(FechaTurno);
-    Jornada j;
-    int i, b=0, ValorDevuelto;
-    int cantJornadas=CantidadRegistrosJornada();
-    for(i=0; i<cantJornadas; i++)
-    {
-        j.LeerDeDisco(i);
-        ValorDevuelto=strcmp(j.getDia().c_str(),D.c_str());
-        if(ValorDevuelto==0&&j.getLegajoDelProfesional()==Leg)
-        {
-            b++;
-            return Leg;
-        }
-    }
-    if (b==0)
-    {
-        cout<< "El profesional ingresado no trabaja el dia elegido: "<<endl;
-        system("pause");
-        return 0;
-    }
-    return 0;
-}
+
 #endif // JORNADA_CPP_INCLUDED

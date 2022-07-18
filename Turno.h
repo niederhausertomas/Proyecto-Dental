@@ -11,7 +11,7 @@ class Turno
 {
 private:
     int _Id;
-    bool _EstadoTurno;
+    int _EstadoTurno;//1- activo; 2- Falta; 3-Cancelacion con 2 dias de anticipacion.-
     Fecha _FechaTurno;
     Hora _HoraTurno;
     int _LegajoPaciente;
@@ -19,14 +19,14 @@ private:
     char _Motivo[100];
 public:
     void setId(int id);
-    void setEstadoTurno(bool EstadoTurno);
+    void setEstadoTurno(int EstadoTurno);
     void setFechaTurno(Fecha FechaTurno);
     void setHoraTurno(Hora HoraTurno);
     void setLegajoPaciente(int LegajoPaciente);
     void setLegajoProfesional(int LegajoProfesional);
     void setMotivo (string Motivo);
     int getId();
-    bool getEstadoTurno();
+    int getEstadoTurno();
     Fecha getFechaTurno();
     Hora getHoraTurno();
     int getLegajoPaciente();

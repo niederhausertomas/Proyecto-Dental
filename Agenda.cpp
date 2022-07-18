@@ -10,11 +10,13 @@ using namespace std;
 void TurnosDispDia()
 {
     Fecha f;
-    do{
-        cout<< "El dia ingresado es fin de semana, Ingrese una nueva fecha: "<<endl;
+    f=ValidarFecha(f);
+    while (FinDeSemana(f)==true)
+    {
+        system("pause");
+        rlutil::cls();
         f=ValidarFecha(f);
-    } while (FinDeSemana(f)==true);
-
+    }
     HorariosDisponiblesDelDia(f);
 }
 
@@ -225,7 +227,7 @@ void DiaProf()
     int LegProf=0;
     Fecha f;
     MostrarTodasLasJornadaProf();
-
+    rlutil::cls();
     do
     {
         LegProf=ValidarLegajoProfesional(LegProf);
@@ -434,7 +436,9 @@ void MenuAgenda()
                 break;
             case 5:
                 rlutil::cls();
+                rlutil::locate(30,9);
                 cout<< "5. Turnos disponibles por dia: "<<endl;
+                rlutil::locate(30,10);
                 cout<< ".................................."<<endl<<endl;
                 TurnosDispDia();
                 rlutil::cls();

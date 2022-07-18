@@ -6,6 +6,7 @@ using namespace std;
 #include <ctime>
 #include "string.h"
 #include <string>
+#include "rlutil.h"
 
 void Fecha::setDia(int dia)
 {
@@ -95,13 +96,17 @@ bool FinDeSemana(Fecha f)
     ValorDevuelto=strcmp(v3,v1);
     if (ValorDevuelto==0)
     {
+        rlutil::setColor(rlutil::RED);
         cout<< "El dia ingresado es fin de semana, ingrese una fecha valida. "<<endl;
+        rlutil::setColor(rlutil::WHITE);
         return true;
     }
     ValorDevuelto=strcmp(v3,v2);
     if (ValorDevuelto==0)
     {
+        rlutil::setColor(rlutil::RED);
         cout<< "El dia ingresado es fin de semana, ingrese una fecha valida. "<<endl;
+        rlutil::setColor(rlutil::WHITE);
         return true;
     }
     return false;

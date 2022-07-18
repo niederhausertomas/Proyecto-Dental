@@ -17,5 +17,6 @@ Fecha ValidarFecha(Fecha f);
 int ValidarDni(int DNI);
 int ValidarDniExistente(int DNI);
 void ValidarEstado(bool estado);
+int ProfParaTurno(Fecha FechaTurno, int Leg);
 
 #endif // VALIDAR_H_INCLUDED

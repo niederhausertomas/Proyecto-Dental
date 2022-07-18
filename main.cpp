@@ -18,7 +18,6 @@ int main()
     rlutil::setBackgroundColor(rlutil::DARKGREY);
     rlutil::setColor(rlutil::WHITE);
     int y=1;
-    char confirmarCerrar;
     rlutil::hidecursor();
     rlutil::cls();
     while(true)

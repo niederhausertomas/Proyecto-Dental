@@ -60,10 +60,9 @@ int LegajoDePacienteNuevo(){
 
 void Paciente::Cargar()
 {
-    int DNI, legajo, inasistencias=0, nroObraSocial, dia, mes, anio;
+    int DNI, nroObraSocial;
     Fecha fechaNac;
     string Nombre, Apellido, Email, Domicilio, Telefono;
-    bool estadoPaciente;
     rlutil::locate(30,10);
     cout<< "1. Cargar nuevo paciente: "<<endl;
     rlutil::locate(30,11);
@@ -421,7 +420,6 @@ void EditarPaciente()
             string Email;
             string Domicilio;
             string Telefono;
-            bool estadoPaciente;
             cout<< "Ingrese la opcion que desea modificar: "<<endl;
             cout<< "1. Legajo: "<<endl;
             cout<< "2. DNI: "<<endl;

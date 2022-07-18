@@ -71,7 +71,9 @@ bool ValidarFechaPasado(Fecha f)
     a.FechaActual();
     if(f.getAnio()<a.getAnio()||(f.getAnio()>=a.getAnio()&&f.getMes()<a.getMes())||(f.getAnio()==a.getAnio()&&f.getMes()==a.getMes()&&f.getDia()<a.getDia()))
     {
-       cout<< "La fecha indicada esta en el pasado! "<<endl;
+        rlutil::setColor(rlutil::RED);
+        cout<< "La fecha indicada esta en el pasado! "<<endl;
+        rlutil::setColor(rlutil::WHITE);
         return false;
     }
         return true;
@@ -154,13 +156,9 @@ Fecha ValidarFecha(Fecha f){
         Dia=ValidarDia(Dia);
         f.setDia(Dia);
         rlutil::cls();
-        rlutil::locate(30,10);
-        cout<< "Fecha de Nacimiento: "<<endl;
         Mes=ValidarMes(Mes);
         f.setMes(Mes);
         rlutil::cls();
-        rlutil::locate(30,10);
-        cout<< "Fecha de Nacimiento: "<<endl;
         Anio=ValidarAnio(Anio);
         f.setAnio(Anio);
     return f;
@@ -184,7 +182,9 @@ int ValidarLegajoProfesional(int Leg)
         }
     }
     if (b==0){
+    rlutil::setColor(rlutil::RED);
     cout<<"No existe el profesional."<<endl;
+    rlutil::setColor(rlutil::WHITE);
     return 0;
     }
 }
@@ -214,7 +214,9 @@ Hora ValidarHorarioConLegJornada(Hora HoraTurno, int LegajoProfesional,Fecha Fec
     }
     if (b==0)
     {
+        rlutil::setColor(rlutil::RED);
         cout<< "El profesional no trabaja en el horario ingresado: "<<endl;
+        rlutil::setColor(rlutil::WHITE);
         system("pause");
         HoraTurno.setHoras(0);
         return HoraTurno;
@@ -226,7 +228,9 @@ int ValidarHora(){
     cout<< "Ingrese Hora: ";
     cin>>hora;
     while (hora<8||hora>20){
+        rlutil::setColor(rlutil::RED);
         cout<< "La hora ingresada esta fuera del horario de atencion (8 a 20 hs.)"<<endl;
+        rlutil::setColor(rlutil::WHITE);
         cout<< "Ingrese Hora: ";
         cin>>hora;
     }
@@ -238,7 +242,9 @@ int ValidarMinutos(){
     cout<< "Ingrese minutos: ";
     cin>>minutos;
     while (minutos!=0&&minutos!=30){
+        rlutil::setColor(rlutil::RED);
         cout<< "Solo se aceptan horarios en punto o y media."<<endl;
+        rlutil::setColor(rlutil::WHITE);
         cout<< "Ingrese minutos: ";
         cin>>minutos;
     }
@@ -257,8 +263,36 @@ int ValidarLegajoPaciente(int Leg){
             return Leg;
         }
     }
+    rlutil::setColor(rlutil::RED);
     cout<<"No existe el paciente."<<endl;
+     rlutil::setColor(rlutil::WHITE);
     return 0;
 }
+
+int ProfParaTurno(Fecha FechaTurno, int Leg){
+    string D=DiaDeLaSemana(FechaTurno);
+    Jornada j;
+    int i, b=0, ValorDevuelto;
+    int cantJornadas=CantidadRegistrosJornada();
+    for(i=0; i<cantJornadas; i++)
+    {
+        j.LeerDeDisco(i);
+        ValorDevuelto=strcmp(j.getDia().c_str(),D.c_str());
+        if(ValorDevuelto==0&&j.getLegajoDelProfesional()==Leg)
+        {
+            b++;
+            return Leg;
+        }
+    }
+    if (b==0)
+    {
+        cout<< "El profesional ingresado no trabaja el dia elegido: "<<endl;
+        system("pause");
+        return 0;
+    }
+    return 0;
+}
+
+
 
 #endif // JORNADA_CPP_INCLUDED
