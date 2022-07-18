@@ -8,6 +8,30 @@ using namespace std;
 #include "Validar.h"
 
 
+
+
+
+float PromedioDeTrunos(Fecha f){
+    Turno aux;
+    int i, cant=0;
+    float promedio;
+    int cantTurnos=CantidadRegistrosTurnos();
+    for(i=0; i<cantTurnos; i++)
+    {
+        aux.LeerDeDisco(i);
+        if(aux.getFechaTurno().getAnio()==f.getAnio()&&aux.getFechaTurno().getMes()==f.getMes())
+        {
+            cant++;
+            if(aux.getEstadoTurno()==1||aux.getEstadoTurno()==2)
+            {
+                cant++;
+            }
+        }
+    }
+    promedio=cant/20;
+    return promedio;
+}
+
 float InasistenciasConAviso(Fecha f)
 {
     Turno aux;
@@ -66,6 +90,7 @@ void Reportes(){
         f.setMes(ValidarMes(f.getMes()));
         float a=InasistenciasSinAviso(f);
         float b=InasistenciasConAviso(f);
+        float c=PromedioDeTrunos(f);
 
         rlutil::cls();
         rlutil::locate(30,10);
@@ -75,7 +100,7 @@ void Reportes(){
         rlutil::locate(30,12);
         cout<< "- Promedio de turnos cancelados con aviso: "<< b <<" %"<<endl;
         rlutil::locate(30,13);
-        cout<< "- Promedio de turnos mensuales: "<<endl;
+        cout<< "- Promedio de turnos mensuales: "<< c <<endl;
         rlutil::locate(30,14);
         cout<< "- Turnos asignados a cada profesional en porcentaje: "<<endl;
         rlutil::locate(30,15);

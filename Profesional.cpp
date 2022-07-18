@@ -423,12 +423,12 @@ void menuProfesionales()
             prof.cargarProfesional();
             if (prof.guardarEnDisco()==true)
             {
-                rlutil::locate(30,20);
+                rlutil::locate(30,21);
                 cout<< "Profesional guardado correctamente. "<<endl;
             }
             else
             {
-                rlutil::locate(30,20);
+                rlutil::locate(30,21);
                 cout<< "No se pudo guardar."<<endl;
             };
             cout<<endl;

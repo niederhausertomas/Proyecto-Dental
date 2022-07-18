@@ -343,7 +343,7 @@
 	"Persona.h"
 	<string>
 
-1658110471 source:c:\users\dell\desktop\porfolio\proyecto dental\profesional.cpp
+1658175085 source:c:\users\dell\desktop\porfolio\proyecto dental\profesional.cpp
 	<iostream>
 	"rlutil.h"
 	"Profesional.h"
@@ -386,7 +386,7 @@
 
 1657400775 c:\users\dell\desktop\porfolio\proyecto dental\reportes.h
 
-1658169134 source:c:\users\dell\desktop\porfolio\proyecto dental\reportes.cpp
+1658174830 source:c:\users\dell\desktop\porfolio\proyecto dental\reportes.cpp
 	<iostream>
 	"rlutil.h"
 	"Turno.h"
