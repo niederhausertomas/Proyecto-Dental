@@ -236,6 +236,7 @@ int CantidadRegistrosJornada()
     fseek(p,0,SEEK_END);
     bytes=ftell(p);
     cantReg=bytes/sizeof(Jornada);
+    fclose(p);
     return cantReg;
 }
 
