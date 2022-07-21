@@ -28,7 +28,7 @@ float PromedioDeTrunos(Fecha f){
             }
         }
     }
-    promedio=cant/20;
+    promedio=(cant/20);
     return promedio;
 }
 
@@ -102,12 +102,8 @@ void Reportes(){
         rlutil::locate(30,13);
         cout<< "- Promedio de turnos mensuales: "<< c <<endl;
         rlutil::locate(30,14);
-        cout<< "- Turnos asignados a cada profesional en porcentaje: "<<endl;
-        rlutil::locate(30,15);
-        cout<< "- Promedio de Turnos cancelados: "<<endl;
-        rlutil::locate(30,16);
         cout<< "............................................."<<endl;
-        rlutil::locate(30,20);
+        rlutil::locate(30,15);
         system("pause");
         rlutil::cls();
 }
