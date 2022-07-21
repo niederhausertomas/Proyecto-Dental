@@ -42,7 +42,8 @@ bool Paciente::getEstadoPaciente()
     return _estadoPaciente;
 }
 
-int LegajoDePacienteNuevo(){
+int LegajoDePacienteNuevo()
+{
     int leg=1;
     Paciente aux;
     int i;
@@ -345,35 +346,41 @@ void listarPacientes()
         cout<<endl;
     }
 
-cout<< "Cantidad de Pacientes Total: "<< cantPacientes<<endl;
+    cout<< "Cantidad de Pacientes Total: "<< cantPacientes<<endl;
 }
 
-void listarPacientesActivos(){
+void listarPacientesActivos()
+{
     Paciente aux;
     int i,z=0;
     int cantPacientes=cantidadRegistrosPacientes();
     for(i=0; i<cantPacientes; i++)
     {
         aux.leerDeDisco(i);
-        if (aux.getEstadoPaciente()==true){
-        aux.Mostrar();
-        z++;
-        cout<<endl;}
+        if (aux.getEstadoPaciente()==true)
+        {
+            aux.Mostrar();
+            z++;
+            cout<<endl;
+        }
     }
     cout<< "Cantidad de Pacientes Activos: "<< z<<endl;
 }
 
-void listarPacientesInactivos(){
+void listarPacientesInactivos()
+{
     Paciente aux;
     int i,z=0;
     int cantPacientes=cantidadRegistrosPacientes();
     for(i=0; i<cantPacientes; i++)
     {
         aux.leerDeDisco(i);
-        if (aux.getEstadoPaciente()==false){
-        aux.Mostrar();
-        z++;
-        cout<<endl;}
+        if (aux.getEstadoPaciente()==false)
+        {
+            aux.Mostrar();
+            z++;
+            cout<<endl;
+        }
     }
     cout<< "Cantidad de Pacientes inactivos: "<< z<<endl;
 }
@@ -496,7 +503,8 @@ void EditarPaciente()
                 aux.guardarEnDisco(i);
                 break;
             case 10:
-                {cout<< "Dia de nacimiento: "<<endl;
+            {
+                cout<< "Dia de nacimiento: "<<endl;
                 cin>>dia;
                 cout<< "Mes de nacimiento: "<<endl;
                 cin>>mes;
@@ -504,19 +512,24 @@ void EditarPaciente()
                 cin>>anio;
                 Fecha fechaNac(dia, mes, anio);
                 aux.setFechaNacimiento(fechaNac);
-                aux.guardarEnDisco(i);}
-                break;
+                aux.guardarEnDisco(i);
+            }
+            break;
             case 11:
                 int n;
-                do{
-                cout<< "Ingrese 1. para paciente como activo, 2. Para paciente inactivo: "<<endl;
-                cin>> n;
-                } while(n<1||n>2);
-                if (n==1){
-                aux.setEstadoPaciente(true);
+                do
+                {
+                    cout<< "Ingrese 1. para paciente como activo, 2. Para paciente inactivo: "<<endl;
+                    cin>> n;
                 }
-                if (n==2){
-                aux.setEstadoPaciente(false);
+                while(n<1||n>2);
+                if (n==1)
+                {
+                    aux.setEstadoPaciente(true);
+                }
+                if (n==2)
+                {
+                    aux.setEstadoPaciente(false);
                 }
                 aux.guardarEnDisco(i);
                 break;
@@ -541,6 +554,7 @@ int cantidadRegistrosPacientes()
     fseek(p,0,SEEK_END);
     bytes=ftell(p);
     cantReg=bytes/sizeof(Paciente);
+    fclose(p);
     return cantReg;
 }
 

@@ -51,9 +51,8 @@ int LegajoDeProfesionalNuevo(){
 
 void Profesional::cargarProfesional()
 {
-    int Leg,Dni, Legajo, Matricula, Dia, Mes, Anio,x;
+    int Leg,Dni, Matricula;
     string Nombre, Apellido, Email, Domicilio, Telefono;
-    bool EstadoProfesional;
     Fecha fechaNac;
     rlutil::locate(30,10);
     cout<< "Cargar nuevo profesional: "<<endl;
@@ -241,7 +240,6 @@ void EditarProfesional()
             string Email;
             string Domicilio;
             string Telefono;
-            bool EstadoProfesional;
             aux.mostrarProfesional();
             cout<< endl;
             cout<< "Ingrese la opcion que desea modificar: "<<endl;
@@ -589,6 +587,7 @@ int cantidadRegistrosProfesionales()
     fseek(p,0,SEEK_END);
     bytes=ftell(p);
     cantReg=bytes/sizeof(Profesional);
+    fclose(p);
     return cantReg;
 }
 

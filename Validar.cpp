@@ -8,7 +8,8 @@ using namespace std;
 #include "Jornada.h"
 #include "rlutil.h"
 
-void ValidarEstado(bool estado){
+void ValidarEstado(bool estado)
+{
     if(estado==true)
     {
         cout<<" Activo";
@@ -18,10 +19,10 @@ void ValidarEstado(bool estado){
         cout<<"inactivo";
     }
     cout<<endl;
-
 }
 
-int ValidarDniExistente(int DNI){
+int ValidarDniExistente(int DNI)
+{
     Paciente aux;
     int i;
     int cantPacientes=cantidadRegistrosPacientes();
@@ -40,14 +41,16 @@ int ValidarDniExistente(int DNI){
     return DNI;
 }
 
-int ValidarDni(int DNI){
+int ValidarDni(int DNI)
+{
     int c=14;
     cout<< "Ingrese DNI: "<<endl;
     rlutil::locate(43,14);
     cin>>DNI;
     rlutil::locate(60,14);
     DNI=ValidarDniExistente(DNI);
-    while(DNI>60000000||DNI<11111111||cin.fail()==true){
+    while(DNI>60000000||DNI<11111111||cin.fail()==true)
+    {
         rlutil::locate(90,c);
         rlutil::setColor(rlutil::RED);
         cout<< "El dato ingresado no es valido"<<endl;
@@ -76,10 +79,11 @@ bool ValidarFechaPasado(Fecha f)
         rlutil::setColor(rlutil::WHITE);
         return false;
     }
-        return true;
+    return true;
 }
 
-int ValidarDia(int Dia){
+int ValidarDia(int Dia)
+{
     int c=11;
     rlutil::locate(30,c);
     c++;
@@ -87,23 +91,25 @@ int ValidarDia(int Dia){
     rlutil::locate(30,c);
     c++;
     cin>>Dia;
-while(Dia<1||Dia>31){
-    rlutil::locate(30,c);
-    c++;
-    rlutil::setColor(rlutil::RED);
-    cout<< "Dia ingresado no valido: "<<endl;
-    rlutil::setColor(rlutil::WHITE);
-    rlutil::locate(30,c);
-    c++;
-    cout<< "Ingrese un numero de dia valido: "<<endl;
-    rlutil::locate(30,c);
-    c++;
-    cin>> Dia;
-}
+    while(Dia<1||Dia>31)
+    {
+        rlutil::locate(30,c);
+        c++;
+        rlutil::setColor(rlutil::RED);
+        cout<< "Dia ingresado no valido: "<<endl;
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::locate(30,c);
+        c++;
+        cout<< "Ingrese un numero de dia valido: "<<endl;
+        rlutil::locate(30,c);
+        c++;
+        cin>> Dia;
+    }
     return Dia;
 }
 
-int ValidarMes(int Mes){
+int ValidarMes(int Mes)
+{
     int c=11;
     rlutil::locate(30,c);
     c++;
@@ -111,23 +117,25 @@ int ValidarMes(int Mes){
     rlutil::locate(30,c);
     c++;
     cin>>Mes;
-while(Mes<1||Mes>12){
-    rlutil::locate(30,c);
-    c++;
-    rlutil::setColor(rlutil::RED);
-    cout<< "El mes ingresado no es valido: "<<endl;
-    rlutil::setColor(rlutil::WHITE);
-    rlutil::locate(30,c);
-    c++;
-    cout<< "Ingrese un numero de mes valido: "<<endl;
-    rlutil::locate(30,c);
-    c++;
-    cin>> Mes;
-}
+    while(Mes<1||Mes>12)
+    {
+        rlutil::locate(30,c);
+        c++;
+        rlutil::setColor(rlutil::RED);
+        cout<< "El mes ingresado no es valido: "<<endl;
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::locate(30,c);
+        c++;
+        cout<< "Ingrese un numero de mes valido: "<<endl;
+        rlutil::locate(30,c);
+        c++;
+        cin>> Mes;
+    }
     return Mes;
 }
 
-int ValidarAnio(int Anio){
+int ValidarAnio(int Anio)
+{
     int c=11;
     rlutil::locate(30,c);
     c++;
@@ -135,32 +143,34 @@ int ValidarAnio(int Anio){
     rlutil::locate(30,c);
     c++;
     cin>>Anio;
-while(Anio<1900||Anio>2100){
-    rlutil::locate(30,c);
-    c++;
-    rlutil::setColor(rlutil::RED);
-    cout<< "El anio ingresado no es valido: "<<endl;
-    rlutil::setColor(rlutil::WHITE);
-    rlutil::locate(30,c);
-    c++;
-    cout<< "Ingrese un numero de anio valido: "<<endl;
-    rlutil::locate(30,c);
-    c++;
-    cin>> Anio;
-}
+    while(Anio<1900||Anio>2100)
+    {
+        rlutil::locate(30,c);
+        c++;
+        rlutil::setColor(rlutil::RED);
+        cout<< "El anio ingresado no es valido: "<<endl;
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::locate(30,c);
+        c++;
+        cout<< "Ingrese un numero de anio valido: "<<endl;
+        rlutil::locate(30,c);
+        c++;
+        cin>> Anio;
+    }
     return Anio;
 }
 
-Fecha ValidarFecha(Fecha f){
-        int Dia, Mes, Anio;
-        Dia=ValidarDia(Dia);
-        f.setDia(Dia);
-        rlutil::cls();
-        Mes=ValidarMes(Mes);
-        f.setMes(Mes);
-        rlutil::cls();
-        Anio=ValidarAnio(Anio);
-        f.setAnio(Anio);
+Fecha ValidarFecha(Fecha f)
+{
+    int Dia, Mes, Anio;
+    Dia=ValidarDia(Dia);
+    f.setDia(Dia);
+    rlutil::cls();
+    Mes=ValidarMes(Mes);
+    f.setMes(Mes);
+    rlutil::cls();
+    Anio=ValidarAnio(Anio);
+    f.setAnio(Anio);
     return f;
 }
 
@@ -181,19 +191,21 @@ int ValidarLegajoProfesional(int Leg)
             return Leg;
         }
     }
-    if (b==0){
-    rlutil::setColor(rlutil::RED);
-    cout<<"No existe el profesional."<<endl;
-    rlutil::setColor(rlutil::WHITE);
-    return 0;
+    if (b==0)
+    {
+        rlutil::setColor(rlutil::RED);
+        cout<<"No existe el profesional."<<endl;
+        rlutil::setColor(rlutil::WHITE);
+        return 0;
     }
 }
 
-Hora ValidarHorario(){
-Hora h;
-h.setHoras(ValidarHora());
-h.setMinutos(ValidarMinutos());
-return h;
+Hora ValidarHorario()
+{
+    Hora h;
+    h.setHoras(ValidarHora());
+    h.setMinutos(ValidarMinutos());
+    return h;
 }
 
 Hora ValidarHorarioConLegJornada(Hora HoraTurno, int LegajoProfesional,Fecha FechaTurno )
@@ -223,11 +235,13 @@ Hora ValidarHorarioConLegJornada(Hora HoraTurno, int LegajoProfesional,Fecha Fec
     }
 }
 
-int ValidarHora(){
+int ValidarHora()
+{
     int hora;
     cout<< "Ingrese Hora: ";
     cin>>hora;
-    while (hora<8||hora>20){
+    while (hora<8||hora>20)
+    {
         rlutil::setColor(rlutil::RED);
         cout<< "La hora ingresada esta fuera del horario de atencion (8 a 20 hs.)"<<endl;
         rlutil::setColor(rlutil::WHITE);
@@ -237,11 +251,13 @@ int ValidarHora(){
     return hora;
 }
 
-int ValidarMinutos(){
+int ValidarMinutos()
+{
     int minutos;
     cout<< "Ingrese minutos: ";
     cin>>minutos;
-    while (minutos!=0&&minutos!=30){
+    while (minutos!=0&&minutos!=30)
+    {
         rlutil::setColor(rlutil::RED);
         cout<< "Solo se aceptan horarios en punto o y media."<<endl;
         rlutil::setColor(rlutil::WHITE);
@@ -251,7 +267,8 @@ int ValidarMinutos(){
     return minutos;
 }
 
-int ValidarLegajoPaciente(int Leg){
+int ValidarLegajoPaciente(int Leg)
+{
     Paciente aux;
     int i;
     int cantPacientes=cantidadRegistrosPacientes();
@@ -265,11 +282,12 @@ int ValidarLegajoPaciente(int Leg){
     }
     rlutil::setColor(rlutil::RED);
     cout<<"No existe el paciente."<<endl;
-     rlutil::setColor(rlutil::WHITE);
+    rlutil::setColor(rlutil::WHITE);
     return 0;
 }
 
-int ProfParaTurno(Fecha FechaTurno, int Leg){
+int ProfParaTurno(Fecha FechaTurno, int Leg)
+{
     string D=DiaDeLaSemana(FechaTurno);
     Jornada j;
     int i, b=0, ValorDevuelto;

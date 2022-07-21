@@ -81,7 +81,8 @@ string Turno::getMotivo()
     return Motivo;
 }
 
-int Turno::GenerarIdTurno(){
+int Turno::GenerarIdTurno()
+{
     int Id=1;
     int i;
     int cantTurnos=CantidadRegistrosTurnos();
@@ -152,7 +153,8 @@ void Turno::Mostrar()
     else if(getEstadoTurno()==2)
     {
         cout<< " Falta. ";
-    }else if(getEstadoTurno()==3)
+    }
+    else if(getEstadoTurno()==3)
     {
         cout<< " Cancelado con anticipacion. ";
     }
@@ -215,6 +217,7 @@ int CantidadRegistrosTurnos()
     fseek(p,0,SEEK_END);
     bytes=ftell(p);
     cantReg=bytes/sizeof(Turno);
+    fclose(p);
     return cantReg;
 }
 
@@ -246,7 +249,6 @@ void EditarTurno()
         if(aux.getId()==Id)
         {
             int opcion;
-            int id;
             int EstadoTurno=4;
             Fecha FechaTurno;
             int Dia, Mes,Anio;
@@ -277,15 +279,17 @@ void EditarTurno()
                 aux.GuardarEnDisco(i);
                 break;
             case 2:
-                while (EstadoTurno==4){
-                cout<< "Ingrese estado del turno (1- activo; 2- Falta; 3-Cancelacion con 2 dias de anticipacion.): "<<endl;
-                cin>> EstadoTurno;
-                if(EstadoTurno<1&&EstadoTurno>3){
-                    rlutil::setColor(rlutil::RED);
-                    cout<< "El estado ingresado no es valido!!"<<endl;
-                    rlutil::setColor(rlutil::WHITE);
-                    EstadoTurno=4;
-                }
+                while (EstadoTurno==4)
+                {
+                    cout<< "Ingrese estado del turno (1- activo; 2- Falta; 3-Cancelacion con 2 dias de anticipacion.): "<<endl;
+                    cin>> EstadoTurno;
+                    if(EstadoTurno<1&&EstadoTurno>3)
+                    {
+                        rlutil::setColor(rlutil::RED);
+                        cout<< "El estado ingresado no es valido!!"<<endl;
+                        rlutil::setColor(rlutil::WHITE);
+                        EstadoTurno=4;
+                    }
                 }
                 aux.setEstadoTurno(EstadoTurno);
                 aux.GuardarEnDisco(i);
@@ -388,51 +392,51 @@ void MenuTurnos()
             }
             break;
         case 1: //enter
-        switch(y)
-        {
-        case 1:
-            rlutil::cls();
-            cout<< "1. Cargar nuevo turno: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            t.Cargar();
-            if (t.GuardarEnDisco()==true)
+            switch(y)
             {
-                cout<< "Turno guardado correctamente. "<<endl;
+            case 1:
+                rlutil::cls();
+                cout<< "1. Cargar nuevo turno: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                t.Cargar();
+                if (t.GuardarEnDisco()==true)
+                {
+                    cout<< "Turno guardado correctamente. "<<endl;
+                }
+                else
+                {
+                    cout<< "No se pudo guardar."<<endl;
+                };
+                system("pause");
+                rlutil::cls();
+                break;
+            case 2:
+                rlutil::cls();
+                cout<< "2. Listado de Turnos: "<<endl;
+                cout<< ".................................."<<endl<<endl;
+                ListarTurnos();
+                system("pause");
+                rlutil::cls();
+                break;
+            case 3:
+                rlutil::cls();
+                EditarTurno();
+                rlutil::cls();
+                break;
+            case 4:
+                rlutil::cls();
+                cout<<endl;
+                cout<< " Todas las jornadas: "<<endl;
+                cout<< "-------------------------"<<endl;
+                MostrarTodasLasJornadaProf();
+                rlutil::cls();
+                break;
+            case 5:
+                i=false;
+                rlutil::cls();
+                break;
             }
-            else
-            {
-                cout<< "No se pudo guardar."<<endl;
-            };
-            system("pause");
-            rlutil::cls();
-            break;
-        case 2:
-            rlutil::cls();
-            cout<< "2. Listado de Turnos: "<<endl;
-            cout<< ".................................."<<endl<<endl;
-            ListarTurnos();
-            system("pause");
-            rlutil::cls();
-            break;
-        case 3:
-            rlutil::cls();
-            EditarTurno();
-            rlutil::cls();
-            break;
-        case 4:
-            rlutil::cls();
-            cout<<endl;
-            cout<< " Todas las jornadas: "<<endl;
-            cout<< "-------------------------"<<endl;
-            MostrarTodasLasJornadaProf();
-            rlutil::cls();
-            break;
-        case 5:
-            i=false;
-            rlutil::cls();
-            break;
         }
     }
-}
 }
 #endif // TURNO_CPP_INCLUDED

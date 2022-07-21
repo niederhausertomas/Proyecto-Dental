@@ -8,10 +8,8 @@ using namespace std;
 #include "Validar.h"
 
 
-
-
-
-float PromedioDeTrunos(Fecha f){
+float PromedioDeTrunos(Fecha f)
+{
     Turno aux;
     int i, cant=0;
     float promedio;
@@ -74,40 +72,40 @@ float InasistenciasSinAviso(Fecha f)
     return inasistencias;
 }
 
-void Reportes(){
-        rlutil::cls();
-        Fecha f;
-        rlutil::locate(30,9);
-        cout<< "Ingrese anio y mes a consultar: "<<endl;
-        rlutil::locate(30,10);
-        cout<< "..................................."<<endl;
-        f.setAnio(ValidarAnio(f.getAnio()));
-        rlutil::cls();
-        rlutil::locate(30,9);
-        cout<< "Ingrese anio y mes a consultar: "<<endl;
-        rlutil::locate(30,10);
-        cout<< "..................................."<<endl;
-        f.setMes(ValidarMes(f.getMes()));
-        float a=InasistenciasSinAviso(f);
-        float b=InasistenciasConAviso(f);
-        float c=PromedioDeTrunos(f);
+void Reportes()
+{
+    rlutil::cls();
+    Fecha f;
+    rlutil::locate(30,9);
+    cout<< "Ingrese anio y mes a consultar: "<<endl;
+    rlutil::locate(30,10);
+    cout<< "..................................."<<endl;
+    f.setAnio(ValidarAnio(f.getAnio()));
+    rlutil::cls();
+    rlutil::locate(30,9);
+    cout<< "Ingrese anio y mes a consultar: "<<endl;
+    rlutil::locate(30,10);
+    cout<< "..................................."<<endl;
+    f.setMes(ValidarMes(f.getMes()));
+    float a=InasistenciasSinAviso(f);
+    float b=InasistenciasConAviso(f);
+    float c=PromedioDeTrunos(f);
 
-        rlutil::cls();
-        rlutil::locate(30,10);
-        cout<< "........Reportes del mes "<< f.getMes()<< " del anio " << f.getAnio()<< "........"  <<endl;
-        rlutil::locate(30,11);
-        cout<< "- Promedio de inasistencias sin aviso: "<< a <<" %"<<endl;
-        rlutil::locate(30,12);
-        cout<< "- Promedio de turnos cancelados con aviso: "<< b <<" %"<<endl;
-        rlutil::locate(30,13);
-        cout<< "- Promedio de turnos mensuales: "<< c <<endl;
-        rlutil::locate(30,14);
-        cout<< "............................................."<<endl;
-        rlutil::locate(30,15);
-        system("pause");
-        rlutil::cls();
+    rlutil::cls();
+    rlutil::locate(30,10);
+    cout<< "........Reportes del mes "<< f.getMes()<< " del anio " << f.getAnio()<< "........"  <<endl;
+    rlutil::locate(30,11);
+    cout<< "- Promedio de inasistencias sin aviso: "<< a <<" %"<<endl;
+    rlutil::locate(30,12);
+    cout<< "- Promedio de turnos cancelados con aviso: "<< b <<" %"<<endl;
+    rlutil::locate(30,13);
+    cout<< "- Promedio de turnos mensuales: "<< c <<endl;
+    rlutil::locate(30,14);
+    cout<< "............................................."<<endl;
+    rlutil::locate(30,15);
+    system("pause");
+    rlutil::cls();
 }
-
 
 
 #endif // REPORTES_CPP_INCLUDED

@@ -9,7 +9,8 @@ using namespace std;
 #include "Validar.h"
 #include "rlutil.h"
 
-void Jornada::setId(int Id){
+void Jornada::setId(int Id)
+{
     _Id=Id;
 }
 
@@ -18,41 +19,50 @@ void Jornada::setDia(string Dia)
     strcpy(_Dia, Dia.c_str());
 }
 
-void Jornada::setLegajoDelProfesional(int LegajoDelProfesional){
+void Jornada::setLegajoDelProfesional(int LegajoDelProfesional)
+{
     _LegajoDelProfesional=LegajoDelProfesional;
 }
 
-void Jornada::setEntrada(Hora Entrada){
+void Jornada::setEntrada(Hora Entrada)
+{
     _Entrada=Entrada;
 }
 
-void Jornada::setSalida (Hora Salida){
+void Jornada::setSalida (Hora Salida)
+{
     _Salida=Salida;
 }
 
-int Jornada::getId(){
+int Jornada::getId()
+{
     return _Id;
 }
 
-string Jornada::getDia(){
+string Jornada::getDia()
+{
     string Dia;
     Dia = _Dia;
     return Dia;
 }
 
-int Jornada::getLegajoDelProfesional(){
+int Jornada::getLegajoDelProfesional()
+{
     return _LegajoDelProfesional;
 }
 
-Hora Jornada::getEntrada(){
+Hora Jornada::getEntrada()
+{
     return _Entrada;
 }
 
-Hora Jornada::getSalida(){
+Hora Jornada::getSalida()
+{
     return _Salida;
 }
 
-int IdDeJornadaNuevo(){
+int IdDeJornadaNuevo()
+{
     Jornada jo;
     int i;
     int Id=1;
@@ -68,17 +78,20 @@ int IdDeJornadaNuevo(){
     return Id;
 }
 
-bool Jornada::VerificarJornada(Jornada j){
+bool Jornada::VerificarJornada(Jornada j)
+{
     Jornada jor;
     int i,ValorDevuelto;
     int cantJornadas=CantidadRegistrosJornada();
-    if(j.getEntrada().getHoras()>j.getSalida().getHoras()){
+    if(j.getEntrada().getHoras()>j.getSalida().getHoras())
+    {
         rlutil::setColor(rlutil::RED);
         cout<< "El horario de entrada es mayor al horario de salida!! " <<endl;
         rlutil::setColor(rlutil::WHITE);
         return false;
     }
-    if(j.getEntrada().getHoras()<8||j.getEntrada().getHoras()>20||j.getSalida().getHoras()>20||j.getSalida().getHoras()<8){
+    if(j.getEntrada().getHoras()<8||j.getEntrada().getHoras()>20||j.getSalida().getHoras()>20||j.getSalida().getHoras()<8)
+    {
         rlutil::setColor(rlutil::RED);
         cout<< "El horario de la jornada esta por fuera del horario de atencion de centro odontologico. " <<endl;
         rlutil::setColor(rlutil::WHITE);
@@ -88,7 +101,8 @@ bool Jornada::VerificarJornada(Jornada j){
     {
         jor.LeerDeDisco(i);
         ValorDevuelto=strcmp(j.getDia().c_str(),jor.getDia().c_str());
-        if(ValorDevuelto==0&&j.getLegajoDelProfesional()==jor.getLegajoDelProfesional()&&j.getEntrada().getHoras()<jor.getSalida().getHoras()&&j.getSalida().getHoras()>jor.getEntrada().getHoras()){
+        if(ValorDevuelto==0&&j.getLegajoDelProfesional()==jor.getLegajoDelProfesional()&&j.getEntrada().getHoras()<jor.getSalida().getHoras()&&j.getSalida().getHoras()>jor.getEntrada().getHoras())
+        {
             rlutil::setColor(rlutil::RED);
             cout<< "La jornada se superpone con otra jornada del mismo profesional! "<<endl;
             rlutil::setColor(rlutil::WHITE);
@@ -107,63 +121,66 @@ void Jornada::CargarJornada()
     bool Verificar=false;
     setId(IdDeJornadaNuevo());
     cout<< "Id de la Jornada: " << getId() <<endl;
-    do {
-    while (LegajoDelProfesional==0){
-        LegajoDelProfesional=ValidarLegajoProfesional(LegajoDelProfesional);
-    }
-    setLegajoDelProfesional(LegajoDelProfesional);
-    int opcion=0;
-    string Dia;
-    while(opcion<1||opcion>5)
+    do
     {
-        cout<< "seleccione el dia de la semana: "<<endl;
-        cout<< "1. Lunes " <<endl;
-        cout<< "2. Martes " <<endl;
-        cout<< "3. Miercoles " <<endl;
-        cout<< "4. Jueves " <<endl;
-        cout<< "5. Viernes "<< endl;
-        cin>> opcion;
+        while (LegajoDelProfesional==0)
+        {
+            LegajoDelProfesional=ValidarLegajoProfesional(LegajoDelProfesional);
+        }
+        setLegajoDelProfesional(LegajoDelProfesional);
+        int opcion=0;
+        string Dia;
+        while(opcion<1||opcion>5)
+        {
+            cout<< "seleccione el dia de la semana: "<<endl;
+            cout<< "1. Lunes " <<endl;
+            cout<< "2. Martes " <<endl;
+            cout<< "3. Miercoles " <<endl;
+            cout<< "4. Jueves " <<endl;
+            cout<< "5. Viernes "<< endl;
+            cin>> opcion;
+        }
+        switch(opcion)
+        {
+        case 1:
+            Dia= "Lunes";
+            setDia(Dia);
+            break;
+        case 2:
+            Dia= "Martes";
+            setDia(Dia);
+            break;
+        case 3:
+            Dia= "Miercoles";
+            setDia(Dia);
+            break;
+        case 4:
+            Dia= "Jueves";
+            setDia(Dia);
+            break;
+        case 5:
+            Dia= "Viernes";
+            setDia(Dia);
+            break;
+        }
+        cout<< "Indique Hora de entrada: "<<endl;
+        cin>> hora;
+        cout<< "Indique Minutos de entrada: "<<endl;
+        cin>> minutos;
+        Hora e;
+        e.setHoras(hora);
+        e.setMinutos(minutos);
+        setEntrada(e);
+        cout<< "Indique Hora de salida: "<<endl;
+        cin>> hora;
+        cout<< "Indique Minutos de salida: "<<endl;
+        cin>> minutos;
+        e.setHoras(hora);
+        e.setMinutos(minutos);
+        setSalida(e);
+        Verificar=VerificarJornada(*this);
     }
-    switch(opcion)
-    {
-    case 1:
-        Dia= "Lunes";
-        setDia(Dia);
-        break;
-    case 2:
-        Dia= "Martes";
-        setDia(Dia);
-        break;
-    case 3:
-        Dia= "Miercoles";
-        setDia(Dia);
-        break;
-    case 4:
-        Dia= "Jueves";
-        setDia(Dia);
-        break;
-    case 5:
-        Dia= "Viernes";
-        setDia(Dia);
-        break;
-    }
-    cout<< "Indique Hora de entrada: "<<endl;
-    cin>> hora;
-    cout<< "Indique Minutos de entrada: "<<endl;
-    cin>> minutos;
-    Hora e;
-    e.setHoras(hora);
-    e.setMinutos(minutos);
-    setEntrada(e);
-    cout<< "Indique Hora de salida: "<<endl;
-    cin>> hora;
-    cout<< "Indique Minutos de salida: "<<endl;
-    cin>> minutos;
-    e.setHoras(hora);
-    e.setMinutos(minutos);
-    setSalida(e);
-    Verificar=VerificarJornada(*this);
-    }while (Verificar==false);
+    while (Verificar==false);
 }
 
 bool Jornada::GuardarEnDisco()
@@ -191,7 +208,8 @@ bool Jornada::GuardarEnDisco(int nroRegistro)
     return guardo;
 }
 
-void Jornada::MostrarJornada(){
+void Jornada::MostrarJornada()
+{
     Profesional aux;
     int i;
     int cantProfesionales=cantidadRegistrosProfesionales();
@@ -200,7 +218,7 @@ void Jornada::MostrarJornada(){
         aux.leerDeDisco(i);
         if(getLegajoDelProfesional()==aux.getLegajo())
         {
-cout<<"ID jornada: "<<getId()<<" - Legajo: "<<getLegajoDelProfesional()<< " " <<aux.getApellido() <<" - Dias: "<<getDia()<<" Horario de entrada: "<<getEntrada().getHoras()<<":"<<getEntrada().getMinutos()<<" Salida: "<<getSalida().getHoras()<<":"<<getSalida().getMinutos()<<endl;
+            cout<<"ID jornada: "<<getId()<<" - Legajo: "<<getLegajoDelProfesional()<< " " <<aux.getApellido() <<" - Dias: "<<getDia()<<" Horario de entrada: "<<getEntrada().getHoras()<<":"<<getEntrada().getMinutos()<<" Salida: "<<getSalida().getHoras()<<":"<<getSalida().getMinutos()<<endl;
         }
     }
 
@@ -409,14 +427,16 @@ void MostrarJornadaProf()
             cout<<endl;
             b++;
         }
-
     }
-    if(b==0){
-    cout<<"No hay jornadas para el profesional."<<endl;}
-system("pause");
+    if(b==0)
+    {
+        cout<<"No hay jornadas para el profesional."<<endl;
+    }
+    system("pause");
 }
 
-void MostrarTodasLasJornadaProf(){
+void MostrarTodasLasJornadaProf()
+{
 
     Jornada j;
     int i,b=0;
@@ -424,13 +444,15 @@ void MostrarTodasLasJornadaProf(){
     for(i=0; i<cantJornadas; i++)
     {
         j.LeerDeDisco(i);
-            j.MostrarJornada();
-            cout<<endl;
-            b++;
+        j.MostrarJornada();
+        cout<<endl;
+        b++;
     }
-    if(b==0){
-    cout<<"No hay jornadas para el profesional."<<endl;}
-system("pause");
+    if(b==0)
+    {
+        cout<<"No hay jornadas para el profesional."<<endl;
+    }
+    system("pause");
 }
 
 bool ProfDisponibleDia(Fecha FechaTurno)

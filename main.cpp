@@ -47,7 +47,8 @@ int main()
             rlutil::locate(28,10+y);
             cout<< " "<<endl;
             y--;
-            if(y<1){
+            if(y<1)
+            {
                 y=1;
             }
             break;
@@ -55,67 +56,36 @@ int main()
             rlutil::locate(28,10+y);
             cout<< " "<<endl;
             y++;
-            if(y>6){
+            if(y>6)
+            {
                 y=6;
             }
             break;
         case 1: //enter
-            switch(y){
-        case 1:
-            menuPacientes();
-            break;
-        case 2:
-            menuProfesionales();
-            break;
-        case 3:
-            MenuTurnos();
-            break;
-        case 4:
-            MenuAgenda();
-            break;
-        case 5:
-            Reportes();
-            break;
-        case 6:
-            return 0;
-            break;
-        default:
-            break;
-            }
-        }
-
-
-
-/*
-        cin>>opcion;
-        switch(opcion)
-        {
-        case 1:
-            menuPacientes();
-            break;
-        case 2:
-            menuProfesionales();
-            break;
-        case 3:
-            MenuTurnos();
-            break;
-        case 4:
-            MenuAgenda();
-            break;
-        case 5:
-            //f.fechaActual();
-            break;
-        case 0:
-            cout<< "Confirma salir? s/n"<<endl;
-            cin>> confirmarCerrar;
-            if (tolower(confirmarCerrar)=='s')
+            switch(y)
             {
+            case 1:
+                menuPacientes();
+                break;
+            case 2:
+                menuProfesionales();
+                break;
+            case 3:
+                MenuTurnos();
+                break;
+            case 4:
+                MenuAgenda();
+                break;
+            case 5:
+                Reportes();
+                break;
+            case 6:
                 return 0;
+                break;
+            default:
+                break;
             }
-            break;
         }
-        system("pause");
-*/
     }
     cout<<endl;
     system("pause");
