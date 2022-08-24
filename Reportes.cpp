@@ -26,7 +26,7 @@ float PromedioDeTrunos(Fecha f)
             }
         }
     }
-    promedio=(cant/20);
+    promedio=(cant/20.0);
     return promedio;
 }
 

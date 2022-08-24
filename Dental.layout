@@ -2,29 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="Jornada.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Persona.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1150" topLine="23" />
+			<Cursor1 position="776" topLine="1" />
 		</Cursor>
 	</File>
-	<File name="Paciente.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Turno.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="938" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="418" topLine="59" />
-		</Cursor>
-	</File>
-	<File name="Hora.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="417" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Fecha.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="195" topLine="0" />
+			<Cursor1 position="308" topLine="9" />
 		</Cursor>
 	</File>
 	<File name="Persona.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -32,56 +17,54 @@
 			<Cursor1 position="368" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Validar.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Agenda.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="617" topLine="4" />
+			<Cursor1 position="7894" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Validar.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3116" topLine="21" />
+			<Cursor1 position="2230" topLine="76" />
 		</Cursor>
-		<Folding>
-			<Collapse line="10" />
-			<Collapse line="23" />
-			<Collapse line="42" />
-			<Collapse line="68" />
-			<Collapse line="81" />
-			<Collapse line="105" />
-			<Collapse line="153" />
-			<Collapse line="167" />
-			<Collapse line="191" />
-			<Collapse line="199" />
-			<Collapse line="225" />
-			<Collapse line="239" />
-			<Collapse line="253" />
-			<Collapse line="271" />
-		</Folding>
 	</File>
-	<File name="Turno.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+	<File name="Reportes.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2205" topLine="105" />
+			<Cursor1 position="692" topLine="12" />
 		</Cursor>
-		<Folding>
-			<Collapse line="77" />
-			<Collapse line="83" />
-			<Collapse line="144" />
-			<Collapse line="168" />
-			<Collapse line="180" />
-			<Collapse line="193" />
-			<Collapse line="206" />
-			<Collapse line="221" />
-			<Collapse line="235" />
-		</Folding>
+	</File>
+	<File name="Paciente.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="15692" topLine="544" />
+		</Cursor>
+	</File>
+	<File name="Turno.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4882" topLine="206" />
+		</Cursor>
+	</File>
+	<File name="Validar.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4607" topLine="183" />
+		</Cursor>
+	</File>
+	<File name="Jornada.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1150" topLine="23" />
+		</Cursor>
 	</File>
 	<File name="Hora.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="142" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Profesional.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="Fecha.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="13007" topLine="200" />
+			<Cursor1 position="78" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="Profesional.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5995" topLine="135" />
 		</Cursor>
 		<Folding>
 			<Collapse line="11" />
@@ -91,87 +74,45 @@
 			<Collapse line="27" />
 			<Collapse line="31" />
 			<Collapse line="35" />
-			<Collapse line="147" />
-			<Collapse line="163" />
-			<Collapse line="176" />
-			<Collapse line="188" />
-			<Collapse line="203" />
-			<Collapse line="224" />
+			<Collapse line="146" />
+			<Collapse line="162" />
+			<Collapse line="175" />
+			<Collapse line="187" />
 		</Folding>
-	</File>
-	<File name="Turno.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="308" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="Paciente.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="14832" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="Reportes.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3101" topLine="91" />
-		</Cursor>
-	</File>
-	<File name="Agenda.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7894" topLine="225" />
-		</Cursor>
-		<Folding>
-			<Collapse line="92" />
-			<Collapse line="121" />
-			<Collapse line="246" />
-			<Collapse line="330" />
-			<Collapse line="346" />
-		</Folding>
-	</File>
-	<File name="Fecha.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="78" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="Persona.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="776" topLine="16" />
-		</Cursor>
 	</File>
 	<File name="Agenda.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="412" topLine="2" />
 		</Cursor>
 	</File>
-	<File name="Jornada.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+	<File name="Paciente.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1459" topLine="29" />
+			<Cursor1 position="938" topLine="0" />
 		</Cursor>
-		<Folding>
-			<Collapse line="11" />
-			<Collapse line="16" />
-			<Collapse line="20" />
-			<Collapse line="24" />
-			<Collapse line="28" />
-			<Collapse line="32" />
-			<Collapse line="36" />
-			<Collapse line="42" />
-			<Collapse line="46" />
-			<Collapse line="50" />
-			<Collapse line="54" />
-			<Collapse line="101" />
-			<Collapse line="169" />
-			<Collapse line="181" />
-			<Collapse line="193" />
-			<Collapse line="209" />
-			<Collapse line="225" />
-			<Collapse line="362" />
-			<Collapse line="375" />
-			<Collapse line="395" />
-			<Collapse line="418" />
-		</Folding>
 	</File>
 	<File name="Profesional.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="733" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="Jornada.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5909" topLine="98" />
+		</Cursor>
+	</File>
+	<File name="Hora.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="373" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="Validar.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="617" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="Fecha.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="195" topLine="97" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
